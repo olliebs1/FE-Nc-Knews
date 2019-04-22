@@ -15,17 +15,10 @@ export default class Articles extends Component {
     })
   }
 
-  componentDidUpdate(_, prevState) {
-    if (this.state.sortedBy !== prevState.sortedBy) {
-      fetchArticles(this.state.sortedBy)
-    }
-  }
-
   SortArticle = (event) => {
     event.preventDefault()
     if (event.target.value !== this.state.sortedBy) {
       this.setState({ sortedBy: event.target.value }, () => {
-        console.log(this.state)
       })
     }
   }

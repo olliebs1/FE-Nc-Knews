@@ -49,7 +49,7 @@ class App extends Component {
         </form>
         <Router>
           <Articles path={'/articles'} />
-          <PostArticleForm path={'/newArticle'} />
+          <PostArticleForm path={'/newArticle'} loggedInAs={this.state.loggedInAs} />
         </Router>
       </div>
     );
