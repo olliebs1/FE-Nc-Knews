@@ -58,6 +58,7 @@ export default class Articles extends Component {
           </select>
         </label>
         <br></br>
+        <br></br>
         <button onClick={this.handleClick}>Create Article?</button>
         {this.state.articles &&
           this.state.articles.map(article => {

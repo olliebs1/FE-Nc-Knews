@@ -47,3 +47,14 @@ export const postNewComment = async (article_id, newComment) => {
   const { data } = await axios.post(`${BASE_URL}/articles/${article_id}/comments`, newComment);
   return data.comment;
 }
+
+export const getTopics = async () => {
+  const { data } = await axios.get(`${BASE_URL}/topics`)
+  return data.topics
+}
+
+export const postTopic = async (newPostTopic) => {
+  const { data } = await axios.post(`${BASE_URL}/topics`, newPostTopic)
+  console.log(data.topics)
+  return data.topics
+}

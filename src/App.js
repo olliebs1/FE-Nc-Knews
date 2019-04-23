@@ -9,6 +9,7 @@ import SingleArticle from './components/SingleArticle';
 import SingleUserProfile from './components/SingleUserProfile';
 import SingleUserArticles from './components/SingleUserArticles';
 import PostCommentForm from './components/PostCommentForm';
+import Topics from './components/Topics';
 
 
 class App extends Component {
@@ -59,6 +60,7 @@ class App extends Component {
           <SingleUserProfile path={`/:username`} username={this.state.loggedInAs} users={this.state.users} removeUser={this.removeUser} />
           <SingleUserArticles path={'/:username/articles'} username={this.state.loggedInAs} />
           <PostCommentForm path={'/articles/:article_id/newComment'} loggedInAs={this.state.loggedInAs} />
+          <Topics path={'/topics'} />
         </Router>
       </div>
     );
