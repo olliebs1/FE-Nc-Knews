@@ -30,3 +30,20 @@ export const fetchArticleById = async (article_id) => {
 export const deleteArticle = (article_id) => {
   return axios.delete(`${BASE_URL}/articles/${article_id}`)
 }
+
+export const getAllComments = async (article_id) => {
+  const { data } = await axios.get(`${BASE_URL}/articles/${article_id}/comments`).catch(err => {
+    console.log(err)
+  })
+  return data.comments
+}
+
+export const deleteComment = (deletedComment_id) => {
+  console.log(deletedComment_id)
+  return axios.delete(`${BASE_URL}/comments/${deletedComment_id}`)
+}
+
+export const postNewComment = async (article_id, newComment) => {
+  const { data } = await axios.post(`${BASE_URL}/articles/${article_id}/comments`, newComment);
+  return data.comment;
+}

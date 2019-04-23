@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { fetchArticleById } from '../api';
+import Comments from './Comments';
 
 export default class SingleArticle extends Component {
 
@@ -20,6 +21,7 @@ export default class SingleArticle extends Component {
       <div className='SingleArticle'>
         {article && <h1>Title: {article.title}</h1>}
         {article && <h3>Article: {article.body}</h3>}
+        {article && <Comments article_id={article.article_id} username={this.props.username} />}
       </div>
     )
   }

@@ -7,6 +7,8 @@ import { Router, navigate } from '@reach/router'
 import PostArticleForm from './components/PostArticleForm';
 import SingleArticle from './components/SingleArticle';
 import SingleUserProfile from './components/SingleUserProfile';
+import SingleUserArticles from './components/SingleUserArticles';
+import PostCommentForm from './components/PostCommentForm';
 
 
 class App extends Component {
@@ -51,10 +53,12 @@ class App extends Component {
           {!this.state.loggedIn ? <input type="submit" value="Log In" /> : <button onClick={this.handleLogoutClick} className='logout-button'>Log Out</button>}
         </form>
         <Router>
-          <Articles path={'/articles'} />
+          <Articles path={'/articles'} loggedInAs={this.state.loggedInAs} />
           <PostArticleForm path={'/newArticle'} loggedInAs={this.state.loggedInAs} />
           <SingleArticle path={`/articles/:article_id`} users={this.state.users} username={this.state.loggedInAs} />
-          <SingleUserProfile path={`/:username`} username={this.state.loggedInAs} users={this.state.users} />
+          <SingleUserProfile path={`/:username`} username={this.state.loggedInAs} users={this.state.users} removeUser={this.removeUser} />
+          <SingleUserArticles path={'/:username/articles'} username={this.state.loggedInAs} />
+          <PostCommentForm path={'/articles/:article_id/newComment'} loggedInAs={this.state.loggedInAs} />
         </Router>
       </div>
     );

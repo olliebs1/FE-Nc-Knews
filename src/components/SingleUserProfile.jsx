@@ -23,9 +23,9 @@ const SingleUserProfile = (props) => {
   )
 }
 
-const handleLogOutClick = () => {
-  console.log(this.props)
-  const { removeUser } = this.props
+const handleLogOutClick = (props) => {
+  const { removeUser } = props
+  console.log(props)
   removeUser()
   navigate('/')
 }

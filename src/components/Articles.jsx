@@ -15,10 +15,13 @@ export default class Articles extends Component {
     })
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log('update', prevProps)
-  //   // if (prevProps.id !== this.props.id) this.fetchStudents();
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.sortedBy !== this.state.sortedBy) {
+      fetchArticles(this.state.sortedBy).then(articles => {
+        this.setState({ articles })
+      })
+    }
+  }
 
   SortArticle = (event) => {
     event.preventDefault()
@@ -39,6 +42,7 @@ export default class Articles extends Component {
 
 
   render() {
+    const { loggedInAs } = this.props
     return (
       <div>
         <h1 className='articles-title'>Articles</h1>
@@ -58,18 +62,18 @@ export default class Articles extends Component {
         {this.state.articles &&
           this.state.articles.map(article => {
             return (
-              <div className='articles'>
+              <div className='articles' key={article.article_id}>
                 <h2>Title: {article.title}</h2>
                 <h3>Topic: {article.topic}</h3>
                 <Link to={`/articles/${article.article_id}`} onClick={this.handleReadArticleClick} >Read Article</Link>
-                <button onClick={() => {
+                {loggedInAs && <button onClick={() => {
                   deleteArticle(article.article_id).then(res => {
                     let filteredArticles = this.state.articles.filter(
                       ({ article_id }) => article.article_id !== article_id);
                     this.setState({ articles: filteredArticles }, () => {
                     })
                   })
-                }} value='article_id'>Delete Article?</button>
+                }} value='article_id'>Delete Article?</button>}
               </div>
             )
           })

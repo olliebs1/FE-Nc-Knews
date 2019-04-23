@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { postNewArticle } from '../api';
-import { navigate, Link } from '@reach/router';
+import { navigate } from '@reach/router';
 
 export default class PostArticleForm extends Component {
 
