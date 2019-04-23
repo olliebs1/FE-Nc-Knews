@@ -3,8 +3,10 @@ import './App.css';
 import HeaderNav from './components/HeaderNav';
 import { fetchAllUsers } from './api';
 import Articles from './components/Articles';
-import { Router } from '@reach/router'
+import { Router, navigate } from '@reach/router'
 import PostArticleForm from './components/PostArticleForm';
+import SingleArticle from './components/SingleArticle';
+import SingleUserProfile from './components/SingleUserProfile';
 
 
 class App extends Component {
@@ -26,6 +28,7 @@ class App extends Component {
 
   handleLogoutClick = () => {
     this.removeUser()
+    navigate('/')
   }
 
   removeUser = () => {
@@ -50,6 +53,8 @@ class App extends Component {
         <Router>
           <Articles path={'/articles'} />
           <PostArticleForm path={'/newArticle'} loggedInAs={this.state.loggedInAs} />
+          <SingleArticle path={`/articles/:article_id`} users={this.state.users} username={this.state.loggedInAs} />
+          <SingleUserProfile path={`/:username`} username={this.state.loggedInAs} users={this.state.users} />
         </Router>
       </div>
     );
