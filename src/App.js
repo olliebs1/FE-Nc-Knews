@@ -10,6 +10,7 @@ import SingleUserProfile from './components/SingleUserProfile';
 import SingleUserArticles from './components/SingleUserArticles';
 import PostCommentForm from './components/PostCommentForm';
 import Topics from './components/Topics';
+import SignUp from './components/SignUp';
 
 
 class App extends Component {
@@ -62,6 +63,7 @@ class App extends Component {
           <SingleUserArticles path={'/:username/articles'} username={this.state.loggedInAs} />
           <PostCommentForm path={'/articles/:article_id/newComment'} loggedInAs={this.state.loggedInAs} />
           <Topics path={'/topics'} />
+          <SignUp path={'/signup'} />
         </Router>
       </div>
     );

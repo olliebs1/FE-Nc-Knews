@@ -77,3 +77,8 @@ export const patchCommentVote = async (comment_id, newVote) => {
   const { data } = await axios.patch(`${BASE_URL}/comments/${comment_id}`, patchedVote)
   return data
 }
+
+export const postUser = async (newUser) => {
+  const { data } = await axios.post(`${BASE_URL}/users`, newUser)
+  return data.user
+}
