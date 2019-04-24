@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { getTopics, postTopic } from '../api';
+import { Link } from '@reach/router';
 
 export default class Topics extends Component {
 
   state = {
     topics: [],
-    topic: '',
+    topic: null,
     slug: null,
     newTopic: false,
   }
@@ -33,7 +34,7 @@ export default class Topics extends Component {
         {this.state.newTopic && <form onSubmit={this.handleSubmit}>
           Topic: <input onChange={this.handleTopicChange}></input>
           <br></br>
-          Description: <input onChange={this.handleSlugChange}></input>
+          Description: <input onChange={this.handleDescriptionChange}></input>
           <br></br>
           <button>Submit</button>
         </form>}
@@ -43,6 +44,7 @@ export default class Topics extends Component {
               <h2>Topic: {topic.slug}</h2>
               <h3>Description: {topic.description}</h3>
               <br></br>
+              <Link to={`/topics/${topic.slug}`}>Read articles with this topic</Link>
             </div>
           )
         })}
@@ -50,12 +52,12 @@ export default class Topics extends Component {
     )
   }
 
-  handleTopicChange = (event) => {
+  handleDescriptionChange = (event) => {
     event.preventDefault()
     this.setState({ topic: event.target.value })
   }
 
-  handleSlugChange = (event) => {
+  handleTopicChange = (event) => {
     event.preventDefault()
     this.setState({ slug: event.target.value })
   }

@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
-import { getAllComments, deleteComment } from '../api';
+import { getAllComments, deleteComment, patchCommentVote } from '../api';
 import { navigate } from '@reach/router';
 
 export default class Comments extends Component {
 
   state = {
-    comments: null
+    comments: null,
+    voteLoading: false,
+    voteChange: 0,
+    voteError: false,
+    voted: false
   }
 
   componentDidMount() {
@@ -15,13 +19,21 @@ export default class Comments extends Component {
     })
   }
 
+  componentDidUpdate(_, prevState) {
+    const { article_id } = this.props
+    if (prevState.voteChange !== this.state.voteChange) {
+      getAllComments(article_id).then(comments => {
+        this.setState({ comments })
+      })
+    }
+  }
+
   handleClick = (event) => {
     event.preventDefault()
     navigate(`/articles/${this.props.article_id}/newComment`)
   }
 
   render() {
-    console.log(this.state)
     const { comments } = this.state
     return (
       <div className='comments'>
@@ -30,6 +42,10 @@ export default class Comments extends Component {
         <br></br>
         {comments && this.state.comments.map(comment => {
           return <li>{comment.body}
+            <br></br>
+            <button onClick={() => { this.handleVoteClick(comment.comment_id, 1) }} >Vote Up!</button>
+            {comment && <span>{comment.votes}</span>}
+            <button onClick={() => { this.handleVoteClick(comment.comment_id, -1) }} >Vote Down!</button>
             <br></br>
             <button onClick={() => {
               deleteComment(comment.comment_id).then(res => {
@@ -43,5 +59,26 @@ export default class Comments extends Component {
         })}
       </div>
     )
+  }
+  handleVoteClick = (comment_id, newVote) => {
+    this.setState({
+      voteLoading: true,
+      voteError: false,
+      voted: true
+    })
+    patchCommentVote(comment_id, newVote).then(() => {
+      this.setState(prevState => ({
+        voteChange: prevState.voteChange + newVote,
+        voteLoading: false,
+        voted: true
+      }));
+    })
+      .catch(err => {
+        this.setState(prevState => ({
+          votingError: true,
+          voteLoading: false,
+          voted: false
+        }))
+      })
   }
 }

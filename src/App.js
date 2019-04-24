@@ -55,6 +55,7 @@ class App extends Component {
         </form>
         <Router>
           <Articles path={'/articles'} loggedInAs={this.state.loggedInAs} />
+          <Articles path={'/topics/:topic'} loggedInAs={this.state.loggedInAs} />
           <PostArticleForm path={'/newArticle'} loggedInAs={this.state.loggedInAs} />
           <SingleArticle path={`/articles/:article_id`} users={this.state.users} username={this.state.loggedInAs} />
           <SingleUserProfile path={`/:username`} username={this.state.loggedInAs} users={this.state.users} removeUser={this.removeUser} />

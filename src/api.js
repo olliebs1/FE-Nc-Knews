@@ -7,8 +7,16 @@ export const fetchAllUsers = async () => {
   return data.users
 }
 
-export const fetchArticles = async (sortedBy) => {
-  const { data } = await axios.get(`${BASE_URL}/articles?${sortedBy}`).catch(err => {
+export const fetchArticles = async (sortedBy, topic) => {
+  console.log(sortedBy)
+  const { data } = await axios.get(`${BASE_URL}/articles`,
+    {
+      params: {
+        sort_by: sortedBy,
+        topic: topic
+      }
+    }
+  ).catch(err => {
     console.log(err)
   })
   return data.articles
@@ -56,4 +64,16 @@ export const getTopics = async () => {
 export const postTopic = async (newPostTopic) => {
   const { data } = await axios.post(`${BASE_URL}/topics`, newPostTopic)
   return data.topic
+}
+
+export const patchArticleVote = async (article_id, newVote) => {
+  const patchedVote = { inc_votes: newVote }
+  const { data } = await axios.patch(`${BASE_URL}/articles/${article_id}`, patchedVote)
+  return data
+}
+
+export const patchCommentVote = async (comment_id, newVote) => {
+  const patchedVote = { inc_votes: newVote }
+  const { data } = await axios.patch(`${BASE_URL}/comments/${comment_id}`, patchedVote)
+  return data
 }

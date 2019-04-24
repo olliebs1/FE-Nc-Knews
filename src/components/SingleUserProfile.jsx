@@ -10,7 +10,7 @@ const SingleUserProfile = (props) => {
         if (user.username === props.username) {
           return (
             <div>
-              <img src={user.avatar_url} />
+              <img src={user.avatar_url} alt='' />
               <h3> Name: {user.name}</h3>
               <h3>Username: {user.username}</h3>
               <button onClick={() => { handleArticleClick(props.username) }}>See Your Articles</button>
