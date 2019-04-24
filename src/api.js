@@ -55,6 +55,5 @@ export const getTopics = async () => {
 
 export const postTopic = async (newPostTopic) => {
   const { data } = await axios.post(`${BASE_URL}/topics`, newPostTopic)
-  console.log(data.topics)
-  return data.topics
+  return data.topic
 }

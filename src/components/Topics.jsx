@@ -4,8 +4,8 @@ import { getTopics, postTopic } from '../api';
 export default class Topics extends Component {
 
   state = {
-    topics: null,
-    topic: null,
+    topics: [],
+    topic: '',
     slug: null,
     newTopic: false,
   }
@@ -16,8 +16,15 @@ export default class Topics extends Component {
     })
   }
 
+  componentDidUpdate(prevState, prevProps) {
+    if (prevState.topic !== this.state.topic) {
+      getTopics().then(topic => {
+        this.setState({ topics: topic })
+      })
+    }
+  }
+
   render() {
-    console.log(this.state)
     const { topics } = this.state
     return (
       <div>
