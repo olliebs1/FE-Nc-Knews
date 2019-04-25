@@ -12,9 +12,11 @@ export default class Articles extends Component {
   componentDidMount() {
     const { topic } = this.props
     const { sortedBy } = this.state
-    console.log(this.props.topic, '<<<<<<<<')
     fetchArticles(topic, sortedBy).then(articles => {
       this.setState({ articles })
+    }).catch(err => {
+      if (err)
+        navigate('/error404')
     })
   }
 
@@ -26,11 +28,16 @@ export default class Articles extends Component {
     if (prevProps.topic !== this.props.topic) {
       fetchArticles(topic, sortedBy).then(articles => {
         this.setState({ articles })
+      }).catch(err => {
+        if (err)
+          navigate('/error404')
       })
     }
     else if (prevState.sortedBy !== this.state.sortedBy) {
       fetchArticles(topic, sortedBy).then(articles => {
         this.setState({ articles })
+      }).catch(err => {
+        navigate('/error404')
       })
     }
   }
@@ -83,7 +90,7 @@ export default class Articles extends Component {
                 <h2>Title: {article.title}</h2>
                 <h3>Topic: {article.topic}</h3>
                 <Link to={`/articles/${article.article_id}`} onClick={this.handleReadArticleClick} >Read Article</Link>
-                {loggedInAs && <button onClick={() => {
+                {loggedInAs && <button disabled={article.author !== loggedInAs} onClick={() => {
                   deleteArticle(article.article_id).then(res => {
                     let filteredArticles = this.state.articles.filter(
                       ({ article_id }) => article.article_id !== article_id);

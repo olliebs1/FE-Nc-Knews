@@ -27,10 +27,11 @@ export default class Topics extends Component {
 
   render() {
     const { topics } = this.state
+    const { loggedInAs } = this.props
     return (
-      <div>
+      <div className='Topics'>
         <br></br>
-        <button onClick={this.handleClick}>Create Topic</button>
+        {loggedInAs && <button onClick={this.handleClick}>Create Topic</button>}
         {this.state.newTopic && <form onSubmit={this.handleSubmit}>
           Topic: <input onChange={this.handleTopicChange}></input>
           <br></br>
@@ -40,17 +41,19 @@ export default class Topics extends Component {
         </form>}
         {topics && topics.map(topic => {
           return (
-            <div>
+            <div className='IndividualTopic' key={topic.slug}>
               <h2>Topic: {topic.slug}</h2>
               <h3>Description: {topic.description}</h3>
               <br></br>
               <Link to={`/topics/${topic.slug}`}>Read articles with this topic</Link>
+              <br></br>
             </div>
           )
         })}
       </div>
     )
   }
+
 
   handleDescriptionChange = (event) => {
     event.preventDefault()

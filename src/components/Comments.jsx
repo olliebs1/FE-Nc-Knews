@@ -48,14 +48,15 @@ export default class Comments extends Component {
             {comment && <span>{comment.votes}</span>}
             <button onClick={() => { this.handleVoteClick(comment.comment_id, -1) }} disabled={!this.props.username || this.state.voteChange < 0}>Vote Down!</button>
             <br></br>
-            <button onClick={() => {
+            < button disabled={comment.author !== username} onClick={() => {
               deleteComment(comment.comment_id).then(res => {
                 let filteredcomments = this.state.comments.filter(
                   ({ comment_id }) => comment.comment_id !== comment_id
                 );
                 this.setState({ comments: filteredcomments });
               })
-            }} value={comment.comment_id} comment_id={comment.comment_id} disabled={!username}>Delete Comment?</button>
+            }} value={comment.comment_id} comment_id={comment.comment_id}>Delete Comment?</button>
+
           </li>
         })}
       </div>

@@ -8,8 +8,6 @@ export const fetchAllUsers = async () => {
 }
 
 export const fetchArticles = async (topic, sortedBy, order) => {
-  console.log('topic', topic)
-  console.log('sorted', sortedBy)
   const response = await axios.get(`${BASE_URL}/articles`,
     {
       params: {
@@ -18,10 +16,7 @@ export const fetchArticles = async (topic, sortedBy, order) => {
 
       }
     }
-  ).catch(err => {
-    console.log(err)
-  })
-  console.log(response)
+  )
   return response.data.articles
 }
 
@@ -32,9 +27,7 @@ export const postNewArticle = async (newArticle) => {
 }
 
 export const fetchArticleById = async (article_id) => {
-  const { data } = await axios.get(`${BASE_URL}/articles/${article_id}`).catch(err => {
-    console.log(err)
-  })
+  const { data } = await axios.get(`${BASE_URL}/articles/${article_id}`)
   return data.article
 }
 
@@ -50,7 +43,6 @@ export const getAllComments = async (article_id) => {
 }
 
 export const deleteComment = (deletedComment_id) => {
-  console.log(deletedComment_id)
   return axios.delete(`${BASE_URL}/comments/${deletedComment_id}`)
 }
 

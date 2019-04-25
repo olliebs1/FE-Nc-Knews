@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { fetchArticleById } from '../api';
 import Comments from './Comments';
 import { patchArticleVote } from '../api';
+import { navigate } from '@reach/router';
 
 
 export default class SingleArticle extends Component {
@@ -17,6 +18,20 @@ export default class SingleArticle extends Component {
   componentDidMount() {
     fetchArticleById(this.props.article_id).then(article => {
       this.setState({ article: article })
+    }).catch(err => {
+      console.log(err)
+      if (err) {
+        navigate('/error404', {
+          replace: true,
+          state:
+          {
+            code: err.code,
+            message: err.message,
+          }
+        },
+          console.log(err)
+        )
+      }
     })
   }
 
