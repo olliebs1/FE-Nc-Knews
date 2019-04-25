@@ -35,17 +35,18 @@ export default class Comments extends Component {
 
   render() {
     const { comments } = this.state
+    const { username } = this.props
     return (
       <div className='comments'>
-        <button onClick={this.handleClick}>Post Comment?</button>
+        <button onClick={this.handleClick} disabled={!username}>Post Comment?</button>
         <br></br>
         <br></br>
         {comments && this.state.comments.map(comment => {
           return <li>{comment.body}
             <br></br>
-            <button onClick={() => { this.handleVoteClick(comment.comment_id, 1) }} >Vote Up!</button>
+            <button onClick={() => { this.handleVoteClick(comment.comment_id, 1) }} disabled={!this.props.username || this.state.voteChange > 0}>Vote Up!</button>
             {comment && <span>{comment.votes}</span>}
-            <button onClick={() => { this.handleVoteClick(comment.comment_id, -1) }} >Vote Down!</button>
+            <button onClick={() => { this.handleVoteClick(comment.comment_id, -1) }} disabled={!this.props.username || this.state.voteChange < 0}>Vote Down!</button>
             <br></br>
             <button onClick={() => {
               deleteComment(comment.comment_id).then(res => {
@@ -54,7 +55,7 @@ export default class Comments extends Component {
                 );
                 this.setState({ comments: filteredcomments });
               })
-            }} value={comment.comment_id} comment_id={comment.comment_id}>Delete Comment?</button>
+            }} value={comment.comment_id} comment_id={comment.comment_id} disabled={!username}>Delete Comment?</button>
           </li>
         })}
       </div>

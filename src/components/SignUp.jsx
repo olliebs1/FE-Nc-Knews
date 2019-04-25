@@ -11,7 +11,9 @@ export default class SignUp extends Component {
   }
 
   render() {
+    const { loggedInAs } = this.props
     return (
+      !loggedInAs &&
       <div>
         <form onSubmit={this.handleSubmit}>
           Name: <input onChange={this.handleNameChange}></input>

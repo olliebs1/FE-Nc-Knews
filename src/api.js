@@ -7,19 +7,22 @@ export const fetchAllUsers = async () => {
   return data.users
 }
 
-export const fetchArticles = async (sortedBy, topic) => {
-  console.log(sortedBy)
-  const { data } = await axios.get(`${BASE_URL}/articles`,
+export const fetchArticles = async (topic, sortedBy, order) => {
+  console.log('topic', topic)
+  console.log('sorted', sortedBy)
+  const response = await axios.get(`${BASE_URL}/articles`,
     {
       params: {
         sort_by: sortedBy,
-        topic: topic
+        topic,
+
       }
     }
   ).catch(err => {
     console.log(err)
   })
-  return data.articles
+  console.log(response)
+  return response.data.articles
 }
 
 

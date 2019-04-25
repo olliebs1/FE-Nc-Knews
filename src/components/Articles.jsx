@@ -6,27 +6,30 @@ export default class Articles extends Component {
 
   state = {
     articles: null,
-    sortedBy: '',
+    sortedBy: null,
   }
 
   componentDidMount() {
-    const { topic } = this.props.topic
-    if (this.props.path === '/topics/:topic') {
-      // const sortedBy = `topic=${this.props.topic}`
-      fetchArticles(topic).then(articles => {
-        this.setState({ articles })
-      })
-    } else if (this.props.path === '/articles') {
-      fetchArticles(this.state.sortedBy).then(articles => {
+    const { topic } = this.props
+    const { sortedBy } = this.state
+    console.log(this.props.topic, '<<<<<<<<')
+    fetchArticles(topic, sortedBy).then(articles => {
+      this.setState({ articles })
+    })
+  }
+
+
+
+  componentDidUpdate(prevProps, prevState) {
+    const { topic } = this.props
+    const { sortedBy } = this.state
+    if (prevProps.topic !== this.props.topic) {
+      fetchArticles(topic, sortedBy).then(articles => {
         this.setState({ articles })
       })
     }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('inside did update')
-    if (prevState.sortedBy !== this.state.sortedBy) {
-      fetchArticles(this.state.sortedBy).then(articles => {
+    else if (prevState.sortedBy !== this.state.sortedBy) {
+      fetchArticles(topic, sortedBy).then(articles => {
         this.setState({ articles })
       })
     }
@@ -55,7 +58,6 @@ export default class Articles extends Component {
 
 
   render() {
-    console.log(this.props)
     const { loggedInAs } = this.props
     return (
       <div>
@@ -63,12 +65,12 @@ export default class Articles extends Component {
         <br></br>
         <label >
           <select className='sortingSelector' onChange={this.SortArticle}> Sort By
-            <option value='article_id&&order=asc'>Sort By: Article Id</option>
-            <option value='created_at&&order=desc' >Sort By: Date</option>
-            <option value='votes&&order=desc'>Sort By: Num of Votes</option>
-            <option value='author&&order=asc'>Sort By: Author</option>
-            <option value='topic&&order=asc'>Sort By: Topic</option>
-            <option value='title&&order=asc'>Sort By: Title</option>
+            <option value='article_id'>Sort By: Article Id</option>
+            <option value='created_at' >Sort By: Date</option>
+            <option value='votes'>Sort By: Num of Votes</option>
+            <option value='author'>Sort By: Author</option>
+            <option value='topic'>Sort By: Topic</option>
+            <option value='title'>Sort By: Title</option>
           </select>
         </label>
         <br></br>

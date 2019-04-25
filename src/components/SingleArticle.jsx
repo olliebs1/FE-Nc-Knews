@@ -34,9 +34,9 @@ export default class SingleArticle extends Component {
       <div className='SingleArticle'>
         {article && <h1>Title: {article.title}</h1>}
         {article && <h3>Article: {article.body}</h3>}
-        <button onClick={() => { this.handleVoteClick(1) }} disabled={this.state.voted}>Vote Up!</button>
+        <button onClick={() => { this.handleVoteClick(1) }} disabled={!this.props.username || this.state.voteChange > 0}>Vote Up!</button>
         {article && <span>{article.votes}</span>}
-        <button onClick={() => { this.handleVoteClick(-1) }} disabled={this.state.voted}>Vote Down!</button>
+        <button onClick={() => { this.handleVoteClick(-1) }} disabled={!this.props.username || this.state.voteChange < 0}>Vote Down!</button>
 
         {/* {article && <VoteHandler votes={article.votes} article_id={article.article_id} />} */}
         <br></br>

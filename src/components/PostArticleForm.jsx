@@ -11,7 +11,9 @@ export default class PostArticleForm extends Component {
   }
 
   render() {
+    const { loggedInAs } = this.props
     return (
+      loggedInAs &&
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>

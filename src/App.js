@@ -16,7 +16,7 @@ import SignUp from './components/SignUp';
 class App extends Component {
   state = {
     users: null,
-    loggedInAs: '',
+    loggedInAs: null,
     loggedIn: false
   }
 
@@ -49,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <HeaderNav path={'/*'} loggedInAs={this.state.loggedInAs} />
+        <HeaderNav path={'/*'} loggedInAs={this.state.loggedInAs} loggedIn={this.state.loggedIn} />
         <form onSubmit={this.handleSubmit} users={this.state.users} className='login-form'>
           {!this.state.loggedInAs ? <input type="text" name="username" /> : <h3>Logged In As: {this.state.loggedInAs}</h3>}
           {!this.state.loggedIn ? <input type="submit" value="Log In" /> : <button onClick={this.handleLogoutClick} className='logout-button'>Log Out</button>}
@@ -57,13 +57,13 @@ class App extends Component {
         <Router>
           <Articles path={'/articles'} loggedInAs={this.state.loggedInAs} />
           <Articles path={'/topics/:topic'} loggedInAs={this.state.loggedInAs} />
-          <PostArticleForm path={'/newArticle'} loggedInAs={this.state.loggedInAs} />
+          {this.state.loggedInAs && <PostArticleForm path={'/newArticle'} loggedInAs={this.state.loggedInAs} />}
           <SingleArticle path={`/articles/:article_id`} users={this.state.users} username={this.state.loggedInAs} />
-          <SingleUserProfile path={`/:username`} username={this.state.loggedInAs} users={this.state.users} removeUser={this.removeUser} />
+          <SingleUserProfile path={`/:username`} username={this.state.loggedInAs} users={this.state.users} removeUser={this.removeUser} loggedInAs={this.state.loggedInAs} />
           <SingleUserArticles path={'/:username/articles'} username={this.state.loggedInAs} />
           <PostCommentForm path={'/articles/:article_id/newComment'} loggedInAs={this.state.loggedInAs} />
           <Topics path={'/topics'} />
-          <SignUp path={'/signup'} />
+          <SignUp path={'/signup'} loggedInAs={this.state.loggedInAs} />
         </Router>
       </div>
     );

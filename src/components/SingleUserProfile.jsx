@@ -2,8 +2,10 @@ import React from 'react'
 import { navigate } from '@reach/router'
 
 const SingleUserProfile = (props) => {
-  const { username } = props
+  const { username, loggedInAs } = props
   return (
+
+    loggedInAs &&
     <div>
       <p>Welcome: {username} </p>
       {props.users && props.users.map(user => {
