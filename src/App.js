@@ -71,7 +71,7 @@ class App extends Component {
           <PostCommentForm path={'/articles/:article_id/newComment'} loggedInAs={this.state.loggedInAs} />
           <Topics path={'/topics'} loggedInAs={this.state.loggedInAs} />
           <SignUp path={'/signup'} loggedInAs={this.state.loggedInAs} />
-          <Error path={'/'} />
+          <Error path={'/error'} />
         </Router>
       </div>
     );

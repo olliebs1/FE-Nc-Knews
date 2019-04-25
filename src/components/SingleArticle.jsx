@@ -21,7 +21,7 @@ export default class SingleArticle extends Component {
     }).catch(err => {
       console.log(err)
       if (err) {
-        navigate('/error404', {
+        navigate('/error', {
           replace: true,
           state:
           {
