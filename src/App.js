@@ -58,13 +58,12 @@ class App extends Component {
         <HeaderNav path={'/*'} loggedInAs={this.state.loggedInAs} loggedIn={this.state.loggedIn} handleLogoutClick={this.handleLogoutClick} default />
         <form onSubmit={this.handleSubmit} users={this.state.users} className='login-form'>
           {!this.state.loggedInAs ? <input type="text" name="username" /> : <h3>Logged In As: {this.state.loggedInAs}</h3>}
-          <button onClick={this.handleLogoutClick} className='logout-button'>Log Out</button>
-          {!this.state.loggedIn && <input type="submit" value="Log In" />}
+          {this.state.loggedInAs ? <button onClick={this.handleLogoutClick} className='logout-button'>Log Out</button> : <input type="submit" value="Log In" />}
         </form>
         <Router>
           <Articles path={'/articles'} loggedInAs={this.state.loggedInAs} />
           <Articles path={'/topics/:topic'} loggedInAs={this.state.loggedInAs} />
-          {this.state.loggedInAs && <PostArticleForm path={'/newArticle'} loggedInAs={this.state.loggedInAs} />}
+          <PostArticleForm path={'/newArticle'} loggedInAs={this.state.loggedInAs} />
           <SingleArticle path={`/articles/:article_id`} users={this.state.users} username={this.state.loggedInAs} />
           <SingleUserProfile path={`/:username`} username={this.state.loggedInAs} users={this.state.users} removeUser={this.removeUser} loggedInAs={this.state.loggedInAs} />
           <SingleUserArticles path={'/:username/articles'} username={this.state.loggedInAs} />

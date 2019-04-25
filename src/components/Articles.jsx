@@ -5,7 +5,7 @@ import { navigate, Link } from '@reach/router';
 export default class Articles extends Component {
 
   state = {
-    articles: null,
+    articles: [],
     sortedBy: null,
   }
 
@@ -68,9 +68,9 @@ export default class Articles extends Component {
     const { loggedInAs } = this.props
     return (
       <div>
-        <h1 className='articles-title'>Articles</h1>
+        {!this.props.topic ? <h1 className='articles-title'>Articles</h1> : <h1>Articles by topic: {this.props.topic}</h1>}
         <br></br>
-        <label >
+        {!this.props.topic && <label >
           <select className='sortingSelector' onChange={this.SortArticle}> Sort By
             <option value='article_id'>Sort By: Article Id</option>
             <option value='created_at' >Sort By: Date</option>
@@ -79,11 +79,11 @@ export default class Articles extends Component {
             <option value='topic'>Sort By: Topic</option>
             <option value='title'>Sort By: Title</option>
           </select>
-        </label>
+        </label>}
         <br></br>
         <br></br>
-        <button onClick={this.handleClick}>Create Article?</button>
-        {this.state.articles &&
+        {!this.props.topic && <button onClick={this.handleClick}>Create Article?</button>}
+        {this.state.articles.length > 0 ?
           this.state.articles.map(article => {
             return (
               <div className='articles' key={article.article_id}>
@@ -100,7 +100,11 @@ export default class Articles extends Component {
                 }} value='article_id'>Delete Article?</button>}
               </div>
             )
-          })
+          }) :
+          <>
+            <h1>This topic has no articles</h1>
+            <Link to={'/newArticle'}>Post Article? </Link>
+          </>
         }
       </div>
     )

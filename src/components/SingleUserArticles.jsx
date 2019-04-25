@@ -22,7 +22,6 @@ export default class SingleUserArticles extends Component {
             return (
               <div key={userArticle.article_id}>
                 <h3>{userArticle.title}</h3>
-                {/* <DeleteArticleById article_id={userArticle.article_id} /> */}
                 <Link to={`/articles/${userArticle.article_id}`}>Read Article</Link>
                 <br></br>
                 <Link to={'/articles'}>See All Articles</Link>

@@ -52,8 +52,6 @@ export default class SingleArticle extends Component {
         <button onClick={() => { this.handleVoteClick(1) }} disabled={!this.props.username || this.state.voteChange > 0}>Vote Up!</button>
         {article && <span>{article.votes}</span>}
         <button onClick={() => { this.handleVoteClick(-1) }} disabled={!this.props.username || this.state.voteChange < 0}>Vote Down!</button>
-
-        {/* {article && <VoteHandler votes={article.votes} article_id={article.article_id} />} */}
         <br></br>
         <br></br>
         {article && <Comments article_id={article.article_id} username={this.props.username} />}

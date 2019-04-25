@@ -27,7 +27,6 @@ const SingleUserProfile = (props) => {
 
 const handleLogOutClick = (props) => {
   const { removeUser } = props
-  console.log(props)
   removeUser()
   navigate('/')
 }

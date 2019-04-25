@@ -12,8 +12,7 @@ export const fetchArticles = async (topic, sortedBy, order) => {
     {
       params: {
         sort_by: sortedBy,
-        topic,
-
+        topic
       }
     }
   )
@@ -36,9 +35,7 @@ export const deleteArticle = (article_id) => {
 }
 
 export const getAllComments = async (article_id) => {
-  const { data } = await axios.get(`${BASE_URL}/articles/${article_id}/comments`).catch(err => {
-    console.log(err)
-  })
+  const { data } = await axios.get(`${BASE_URL}/articles/${article_id}/comments`)
   return data.comments
 }
 
