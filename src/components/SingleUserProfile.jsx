@@ -7,7 +7,7 @@ const SingleUserProfile = (props) => {
 
     loggedInAs &&
     <div>
-      <p>Welcome: {username} </p>
+      <p>Welcome: {loggedInAs} </p>
       {props.users && props.users.map(user => {
         if (user.username === props.username) {
           return (

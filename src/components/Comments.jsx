@@ -6,6 +6,7 @@ export default class Comments extends Component {
 
   state = {
     comments: null,
+    noComments: false,
     voteLoading: false,
     voteChange: 0,
     voteError: false,
@@ -16,6 +17,8 @@ export default class Comments extends Component {
     const { article_id } = this.props
     getAllComments(article_id).then(comments => {
       this.setState({ comments })
+    }).catch(err => {
+      this.setState({ noComments: true })
     })
   }
 

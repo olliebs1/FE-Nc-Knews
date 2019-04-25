@@ -18,6 +18,7 @@ class App extends Component {
   state = {
     users: null,
     loggedInAs: null,
+    validUser: true,
     loggedIn: false
   }
 
@@ -29,6 +30,8 @@ class App extends Component {
         this.setState({ loggedInAs: event.target[0].value, loggedIn: true }, () => {
           localStorage.setItem('loggedInAs', this.state.loggedInAs)
         })
+      } else if (user.username !== event.target[0].value) {
+        this.setState({ validUser: false })
       }
     })
   }
@@ -56,16 +59,22 @@ class App extends Component {
     return (
       <div className="App">
         <HeaderNav path={'/*'} loggedInAs={this.state.loggedInAs} loggedIn={this.state.loggedIn} handleLogoutClick={this.handleLogoutClick} default />
+
         <form onSubmit={this.handleSubmit} users={this.state.users} className='login-form'>
           {!this.state.loggedInAs ? <input type="text" name="username" /> : <h3>Logged In As: {this.state.loggedInAs}</h3>}
           {this.state.loggedInAs ? <button onClick={this.handleLogoutClick} className='logout-button'>Log Out</button> : <input type="submit" value="Log In" />}
         </form>
+        {!this.state.validUser && <>
+          <p>Invalid Username</p>
+        </>}
+
+
         <Router>
           <Articles path={'/articles'} loggedInAs={this.state.loggedInAs} />
           <Articles path={'/topics/:topic'} loggedInAs={this.state.loggedInAs} />
           <PostArticleForm path={'/newArticle'} loggedInAs={this.state.loggedInAs} />
           <SingleArticle path={`/articles/:article_id`} users={this.state.users} username={this.state.loggedInAs} />
-          <SingleUserProfile path={`/:username`} username={this.state.loggedInAs} users={this.state.users} removeUser={this.removeUser} loggedInAs={this.state.loggedInAs} />
+          <SingleUserProfile path={`/:username`} users={this.state.users} removeUser={this.removeUser} loggedInAs={this.state.loggedInAs} />
           <SingleUserArticles path={'/:username/articles'} username={this.state.loggedInAs} />
           <PostCommentForm path={'/articles/:article_id/newComment'} loggedInAs={this.state.loggedInAs} />
           <Topics path={'/topics'} loggedInAs={this.state.loggedInAs} />

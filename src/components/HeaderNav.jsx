@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from '@reach/router'
 
-const HeaderNav = ({ loggedInAs, loggedIn, handleLogoutClick }) => {
+const HeaderNav = ({ loggedInAs }) => {
   return (
     <div>
       <h1 className='Header'>NorthCoders Knews</h1>
