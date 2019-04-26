@@ -58,16 +58,17 @@ export const postTopic = async (newPostTopic) => {
   return data.topic
 }
 
-export const patchArticleVote = async (article_id, newVote) => {
+export const patchVote = async (comment_id, article_id, newVote) => {
   const patchedVote = { inc_votes: newVote }
-  const { data } = await axios.patch(`${BASE_URL}/articles/${article_id}`, patchedVote)
-  return data
-}
-
-export const patchCommentVote = async (comment_id, newVote) => {
-  const patchedVote = { inc_votes: newVote }
-  const { data } = await axios.patch(`${BASE_URL}/comments/${comment_id}`, patchedVote)
-  return data
+  if (article_id) {
+    const { data } = await axios.patch(`${BASE_URL}/articles/${article_id}`, patchedVote)
+    console.log(data, 'articles')
+    return data
+  } else if (comment_id) {
+    const { data } = await axios.patch(`${BASE_URL}/comments/${comment_id}`, patchedVote)
+    console.log(data, 'comments')
+    return data
+  }
 }
 
 export const postUser = async (newUser) => {

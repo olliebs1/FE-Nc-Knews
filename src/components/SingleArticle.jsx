@@ -3,6 +3,7 @@ import { fetchArticleById } from '../api';
 import Comments from './Comments';
 import { patchArticleVote } from '../api';
 import { navigate } from '@reach/router';
+import VotesComponent from './VotesComponent';
 
 
 export default class SingleArticle extends Component {
@@ -45,42 +46,17 @@ export default class SingleArticle extends Component {
 
   render() {
     const { article } = this.state
+    const { username, article_id } = this.props
     return (
       <div className='SingleArticle'>
         {!this.state.article && <h1>LOADING....</h1>}
         {article && <h1>Title: {article.title}</h1>}
         {article && <h3>Article: {article.body}</h3>}
-        <button onClick={() => { this.handleVoteClick(1) }} disabled={!this.props.username || this.state.voteChange > 0}>Vote Up!</button>
-        {article && <span>{article.votes}</span>}
-        <button onClick={() => { this.handleVoteClick(-1) }} disabled={!this.props.username || this.state.voteChange < 0}>Vote Down!</button>
+        {article && <VotesComponent votes={article.votes} username={username} article_id={article_id} />}
         <br></br>
         <br></br>
         {article && <Comments article_id={article.article_id} username={this.props.username} />}
       </div>
     )
-  }
-
-
-  handleVoteClick = newVote => {
-    const { article_id } = this.props
-    this.setState({
-      voteLoading: true,
-      voteError: false,
-      voted: true
-    })
-    patchArticleVote(article_id, newVote).then(() => {
-      this.setState(prevState => ({
-        voteChange: prevState.voteChange + newVote,
-        voteLoading: false,
-        voted: true
-      }));
-    })
-      .catch(err => {
-        this.setState(prevState => ({
-          votingError: true,
-          voteLoading: false,
-          voted: false
-        }))
-      })
   }
 }
