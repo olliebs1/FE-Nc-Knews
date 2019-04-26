@@ -7,13 +7,14 @@ export default class PostArticleForm extends Component {
   state = {
     title: null,
     body: null,
-    topic: null
+    topic: null,
+    loading: false
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        {!this.state.loading ? <form onSubmit={this.handleSubmit}>
           <label>
             Title: <input type='text' name='title' onChange={this.handleTitleChange}></input>
             <br></br>
@@ -23,7 +24,7 @@ export default class PostArticleForm extends Component {
             <br></br>
             {!this.props.loggedInAs ? 'Please Log In to post Article.' : <button >Post Article</button>}
           </label>
-        </form>
+        </form> : <h1>LOADING....</h1>}
       </div>
     )
   }
@@ -32,10 +33,10 @@ export default class PostArticleForm extends Component {
     event.preventDefault()
     const newArticle = this.state
     newArticle.username = this.props.loggedInAs
+    this.setState({ loading: true })
     postNewArticle(newArticle).then(() => {
       navigate('/articles')
-    }
-    )
+    })
   }
 
   handleTitleChange = (event) => {

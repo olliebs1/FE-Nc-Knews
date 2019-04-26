@@ -7,6 +7,7 @@ export default class Articles extends Component {
   state = {
     articles: [],
     sortedBy: null,
+    loading: false,
   }
 
   componentDidMount() {
@@ -90,12 +91,13 @@ export default class Articles extends Component {
                 <h2>Title: {article.title}</h2>
                 <h3>Topic: {article.topic}</h3>
                 <Link to={`/articles/${article.article_id}`} onClick={this.handleReadArticleClick} >Read Article</Link>
+                <br></br>
                 {loggedInAs && <button disabled={article.author !== loggedInAs} onClick={() => {
                   deleteArticle(article.article_id).then(res => {
                     let filteredArticles = this.state.articles.filter(
                       ({ article_id }) => article.article_id !== article_id);
-                    this.setState({ articles: filteredArticles }, () => {
-                    })
+                    this.setState({ articles: filteredArticles, loading: true })
+                    navigate('/articles')
                   })
                 }} value='article_id'>Delete Article?</button>}
               </div>

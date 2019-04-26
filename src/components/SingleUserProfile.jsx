@@ -2,7 +2,7 @@ import React from 'react'
 import { navigate } from '@reach/router'
 
 const SingleUserProfile = (props) => {
-  const { username, loggedInAs } = props
+  const { loggedInAs } = props
   return (
 
     loggedInAs &&

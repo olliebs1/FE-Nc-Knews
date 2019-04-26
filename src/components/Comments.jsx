@@ -44,24 +44,26 @@ export default class Comments extends Component {
         <button onClick={this.handleClick} disabled={!username}>Post Comment?</button>
         <br></br>
         <br></br>
-        {comments && this.state.comments.map(comment => {
-          return <li>{comment.body}
-            <br></br>
-            <button onClick={() => { this.handleVoteClick(comment.comment_id, 1) }} disabled={!this.props.username || this.state.voteChange > 0}>Vote Up!</button>
-            {comment && <span>{comment.votes}</span>}
-            <button onClick={() => { this.handleVoteClick(comment.comment_id, -1) }} disabled={!this.props.username || this.state.voteChange < 0}>Vote Down!</button>
-            <br></br>
-            < button disabled={comment.author !== username} onClick={() => {
-              deleteComment(comment.comment_id).then(res => {
-                let filteredcomments = this.state.comments.filter(
-                  ({ comment_id }) => comment.comment_id !== comment_id
-                );
-                this.setState({ comments: filteredcomments });
-              })
-            }} value={comment.comment_id} comment_id={comment.comment_id}>Delete Comment?</button>
+        {!this.state.noComments ? <>
+          {comments && this.state.comments.map(comment => {
+            return <li key={comment.comment_id}>{comment.body}
+              <br></br>
+              <button onClick={() => { this.handleVoteClick(comment.comment_id, 1) }} disabled={!this.props.username || this.state.voteChange > 0}>Vote Up!</button>
+              {comment && <span>{comment.votes}</span>}
+              <button onClick={() => { this.handleVoteClick(comment.comment_id, -1) }} disabled={!this.props.username || this.state.voteChange < 0}>Vote Down!</button>
+              <br></br>
+              < button disabled={comment.author !== username} onClick={() => {
+                deleteComment(comment.comment_id).then(res => {
+                  let filteredcomments = this.state.comments.filter(
+                    ({ comment_id }) => comment.comment_id !== comment_id
+                  );
+                  this.setState({ comments: filteredcomments });
+                })
+              }} value={comment.comment_id} comment_id={comment.comment_id}>Delete Comment?</button>
 
-          </li>
-        })}
+            </li>
+          })}
+        </> : <h2>This Article has no comments</h2>}
       </div>
     )
   }

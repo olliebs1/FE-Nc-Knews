@@ -47,6 +47,7 @@ export default class SingleArticle extends Component {
     const { article } = this.state
     return (
       <div className='SingleArticle'>
+        {!this.state.article && <h1>LOADING....</h1>}
         {article && <h1>Title: {article.title}</h1>}
         {article && <h3>Article: {article.body}</h3>}
         <button onClick={() => { this.handleVoteClick(1) }} disabled={!this.props.username || this.state.voteChange > 0}>Vote Up!</button>

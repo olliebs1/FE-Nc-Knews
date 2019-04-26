@@ -5,19 +5,20 @@ import { navigate } from '@reach/router';
 export default class PostCommentForm extends Component {
 
   state = {
-    body: null
+    body: null,
+    loading: false
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        {!this.state.loading ? <form onSubmit={this.handleSubmit}>
           <label>
             Comment: <textarea type='text' name='title' onChange={this.handleBodyChange}></textarea>
             <br></br>
             {!this.props.loggedInAs ? 'Please Log In to post Comment.' : <button >Post Comment</button>}
           </label>
-        </form>
+        </form> : <h1>LOADING....</h1>}
       </div>
     )
   }
@@ -33,6 +34,7 @@ export default class PostCommentForm extends Component {
     const { article_id } = this.props
     const newComment = this.state
     newComment.author = this.props.loggedInAs
+    this.setState({ loading: true })
     postNewComment(article_id, newComment).then(() => {
       navigate(`/articles/${article_id}`)
     }
