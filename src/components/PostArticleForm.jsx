@@ -24,7 +24,7 @@ export default class PostArticleForm extends Component {
             <br></br>
             {!this.props.loggedInAs ? 'Please Log In to post Article.' : <button >Post Article</button>}
           </label>
-        </form> : <h1>LOADING....</h1>}
+        </form> : <h1 className='loadingMessage' >LOADING....</h1>}
       </div>
     )
   }

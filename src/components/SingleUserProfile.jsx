@@ -6,16 +6,18 @@ const SingleUserProfile = (props) => {
   return (
     loggedInAs &&
     <div>
-      <p>Welcome: {loggedInAs} </p>
+      <h3 className='userWelcomeMessage' >Welcome: {loggedInAs} </h3>
       {props.users && props.users.map(user => {
         if (user.username === props.username) {
           return (
             <div>
-              <img src={user.avatar_url} img alt src='https://i.imgflip.com/1onp4t.jpg' />
-              <h3> Name: {user.name}</h3>
-              <h3>Username: {user.username}</h3>
-              <button onClick={() => { handleArticleClick(props.username) }}>See Your Articles</button>
-              <button onClick={() => handleLogOutClick(props)}>Log Out</button>
+              <img className='userImage' src={user.avatar_url} alt src='https://i.imgflip.com/1onp4t.jpg' />
+              <div className='userDetails'>
+                <h3> Name: {user.name}</h3>
+                <h3>Username: {user.username}</h3>
+              </div>
+              <button className='seeArticlesButton' onClick={() => { handleArticleClick(props.username) }}>See Your Articles</button>
+              <button className='logOutButton' onClick={() => handleLogOutClick(props)}>Log Out</button>
             </div>
           )
         }

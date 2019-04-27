@@ -32,25 +32,29 @@ export default class Topics extends Component {
     const { loggedInAs } = this.props
     return (
       <div className='Topics'>
+        <h1 className='topics-title' >Topics</h1>
         <br></br>
-        {!this.state.loading ? <>
-          {loggedInAs && <button onClick={this.handleClick}>Create Topic</button>}
-          {this.state.newTopic && <form onSubmit={this.handleSubmit}>
-            Topic: <input onChange={this.handleTopicChange}></input>
-            <br></br>
-            Description: <input onChange={this.handleDescriptionChange}></input>
-            <br></br>
-            <button>Submit</button>
-          </form>}
-        </> : <h1>LOADING....</h1>}
+        {!this.state.loading ?
+          <>
+            {loggedInAs && <button className='createButton' onClick={this.handleClick}>Create Topic</button>}
+            {this.state.newTopic && <form onSubmit={this.handleSubmit}>
+              Topic: <input className='topicInput' onChange={this.handleTopicChange} type='text' ></input>
+              <br></br>
+              Description: <input className='topicInput' onChange={this.handleDescriptionChange}></input>
+              <br></br>
+              <button className='submitButton'>Submit</button>
+            </form>}
+          </>
+          : <h1>LOADING....</h1>}
         {topics && topics.map(topic => {
           return (
             <div className='IndividualTopic' key={topic.slug}>
-              <h2>Topic: {topic.slug}</h2>
-              <h3>Description: {topic.description}</h3>
-              <br></br>
-              <Link to={`/topics/${topic.slug}`}>Read articles with this topic</Link>
-              <br></br>
+              <>
+                <h2>Topic: {topic.slug}</h2>
+                <h3>Description: {topic.description}</h3>
+                <Link className='readTopicLink' to={`/topics/${topic.slug}`}>Read articles with this topic</Link>
+                <br></br>
+              </>
             </div>
           )
         })}

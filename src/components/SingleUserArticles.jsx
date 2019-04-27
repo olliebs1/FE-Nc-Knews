@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { fetchArticles } from '../api';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 
 export default class SingleUserArticles extends Component {
   state = {
@@ -16,15 +16,15 @@ export default class SingleUserArticles extends Component {
 
   render() {
     return (
-      <div>
+      <div >
         {this.state.userArticles.map(userArticle => {
           if (userArticle.author === this.props.username) {
             return (
-              <div key={userArticle.article_id}>
-                <h3>{userArticle.title}</h3>
-                <Link to={`/articles/${userArticle.article_id}`}>Read Article</Link>
+              <div key={userArticle.article_id} className='singleUserArticles'>
+                <h2>Title: {userArticle.title}</h2>
+                <button className='readArticleButton' onClick={() => { this.handleUsersArticlesClick(userArticle.article_id) }}>Read Article</button>
                 <br></br>
-                <Link to={'/articles'}>See All Articles</Link>
+                <button className='seeArticlesButton' onClick={this.handleClick}>See All Articles</button>
               </div>
             )
           }
@@ -32,4 +32,12 @@ export default class SingleUserArticles extends Component {
       </div>
     )
   }
+  handleClick = () => {
+    navigate('/articles')
+  }
+
+  handleUsersArticlesClick = (article_id) => {
+    navigate(`/articles/${article_id}`)
+  }
+
 }

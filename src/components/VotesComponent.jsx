@@ -14,9 +14,9 @@ export default class VotesComponent extends Component {
     const { voteChange } = this.state
     return (
       <div>
-        <button onClick={() => { this.handleVoteClick(1) }} disabled={!this.props.username || this.state.voteChange > 0}>Vote Up!</button>
+        <button className='voteUpButton' onClick={() => { this.handleVoteClick(1) }} disabled={!this.props.username || this.state.voteChange > 0}>Vote Up!</button>
         <span>{votes + voteChange}</span>
-        <button onClick={() => { this.handleVoteClick(-1) }} disabled={!this.props.username || this.state.voteChange < 0}>Vote Down!</button>
+        <button className='voteDownButton' onClick={() => { this.handleVoteClick(-1) }} disabled={!this.props.username || this.state.voteChange < 0}>Vote Down!</button>
       </div>
     )
   }

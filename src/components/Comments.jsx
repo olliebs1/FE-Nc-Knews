@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getAllComments, deleteComment } from '../api';
+import { getAllComments } from '../api';
 import { navigate } from '@reach/router';
 import VotesComponent from './VotesComponent';
 import CommentCard from './CommentCard';
@@ -30,12 +30,15 @@ export default class Comments extends Component {
     const { username } = this.props
     return (
       <div className='comments'>
-        <button onClick={this.handleClick} disabled={!username}>Post Comment?</button>
+        <h1 className='comments-title'>Comments:</h1>
+        <button className='createButton' onClick={this.handleClick} disabled={!username}>Post Comment?</button>
         {comments && this.state.comments.map(comment => {
           return (
-            <div>
-              <CommentCard comment={comment} username={this.props.username} handleDeleteCommentClick={this.handleDeleteCommentClick} />
-              <VotesComponent votes={comment.votes} username={this.props.username} comment_id={comment.comment_id} />
+            <div className='allComments'>
+              <>
+                <CommentCard comment={comment} username={this.props.username} handleDeleteCommentClick={this.handleDeleteCommentClick} />
+                <VotesComponent votes={comment.votes} username={this.props.username} comment_id={comment.comment_id} />
+              </>
             </div>
           )
         })

@@ -16,11 +16,11 @@ export default class SignUp extends Component {
       !loggedInAs &&
       <div>
         <form onSubmit={this.handleSubmit}>
-          Name: <input onChange={this.handleNameChange}></input>
-          Username: <input onChange={this.handleUsernameChange}></input>
-          avatar_url: <input onChange={this.handleAvatarChange}></input>
+          Name: <input onChange={this.handleNameChange} className='signUpName'></input>
+          Username: <input onChange={this.handleUsernameChange} className='signUpUserName'></input>
+          avatar_url: <input onChange={this.handleAvatarChange} className='signUpAvatar'></input>
           <br></br>
-          <button onClick={this.handleSignUpClick}>Sign Up</button>
+          <button className='signUpButton' onClick={this.handleSignUpClick}>Sign Up</button>
         </form>
       </div>
     )

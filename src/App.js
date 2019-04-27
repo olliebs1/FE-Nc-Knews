@@ -60,12 +60,12 @@ class App extends Component {
         <HeaderNav path={'/*'} loggedInAs={this.state.loggedInAs} loggedIn={this.state.loggedIn} handleLogoutClick={this.handleLogoutClick} default />
 
         <form onSubmit={this.handleSubmit} users={this.state.users} className='login-form'>
-          {!this.state.loggedInAs ? <><h3>Please Log In</h3> <input type="text" name="username" /></> : <h3>Logged In As: {this.state.loggedInAs}</h3>}
-          {this.state.loggedInAs ? <button onClick={this.handleLogoutClick} className='logout-button'>Log Out</button> : <input type="submit" value="Log In" />}
+          {!this.state.loggedInAs ? <><h3 className='pleaseLogInMessage' >Please Log In</h3> <input className='usernameInput' type="text" name="username" /></> : <h2 className='loggedInAsText'>Logged In As: {this.state.loggedInAs}</h2>}
+          {this.state.loggedInAs ? <button className='logOutButton' onClick={this.handleLogoutClick} >Log Out</button> : <input className='logInInput' type="submit" value="Log In" />}
         </form>
-        {!this.state.validUser ? <>
+        {/* {!this.state.validUser && <>
           <p>Invalid Username</p>
-        </> : ''}
+        </>} */}
 
 
         <Router>

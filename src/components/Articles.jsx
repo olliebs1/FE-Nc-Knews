@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { fetchArticles, deleteArticle } from '../api';
+import { fetchArticles } from '../api';
 import { navigate, Link } from '@reach/router';
 import ArticlesCard from './ArticlesCard';
 
@@ -63,11 +63,11 @@ export default class Articles extends Component {
     const { loggedInAs, topic } = this.props
     const { articles } = this.state
     return (
-      <div>
+      <div className='allArticles'>
         {!topic ? <h1 className='articles-title'>Articles</h1> : <h1>Articles by topic: {topic}</h1>}
         <br></br>
-        {!topic && <label >
-          <select className='sortingSelector' onChange={this.SortArticle}> Sort By
+        {!topic && <div >
+          <select class="custom-select" onChange={this.SortArticle}> Sort By
             <option value='article_id'>Sort By: Article Id</option>
             <option value='created_at' >Sort By: Date</option>
             <option value='votes'>Sort By: Num of Votes</option>
@@ -75,9 +75,9 @@ export default class Articles extends Component {
             <option value='topic'>Sort By: Topic</option>
             <option value='title'>Sort By: Title</option>
           </select>
-        </label>}
+        </div>}
         <br></br>
-        {!topic && <button onClick={this.handleClick}>Create Article?</button>}
+        {!topic && <button className='createButton' onClick={this.handleClick}>Create Article?</button>}
         {articles.length > 0 ? articles.map(article => {
           return (
             <>
@@ -86,7 +86,7 @@ export default class Articles extends Component {
           )
         }) : <>
             <h1>This topic has no articles</h1>
-            <Link to={'/newArticle'}>Post Article? </Link>
+            <Link className='createButton' to={'/newArticle'}>Create Article? </Link>
           </>}
       </div>
     )
