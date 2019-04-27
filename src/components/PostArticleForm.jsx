@@ -16,13 +16,13 @@ export default class PostArticleForm extends Component {
       <div>
         {!this.state.loading ? <form onSubmit={this.handleSubmit}>
           <label>
-            Title: <input type='text' name='title' onChange={this.handleTitleChange}></input>
+            Title: <input className='postArticleInputTitle' type='text' name='title' onChange={this.handleTitleChange}></input>
             <br></br>
-            Article: <input type='text' name='article' onChange={this.handleArticleChange}></input>
+            Article: <input className='postArticleInputArticle' type='text' name='article' onChange={this.handleArticleChange}></input>
             <br></br>
-            Topic: <input type='text' name='topic' onChange={this.handleTopicChange}></input>
+            Topic: <input className='postArticleInputTopic' type='text' name='topic' onChange={this.handleTopicChange}></input>
             <br></br>
-            {!this.props.loggedInAs ? 'Please Log In to post Article.' : <button >Post Article</button>}
+            {!this.props.loggedInAs ? 'Please Log In to post Article.' : <button className='postArticleButton' >Post Article</button>}
           </label>
         </form> : <h1 className='loadingMessage' >LOADING....</h1>}
       </div>

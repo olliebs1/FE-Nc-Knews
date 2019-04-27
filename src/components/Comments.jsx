@@ -21,6 +21,7 @@ export default class Comments extends Component {
   }
 
   handleClick = (event) => {
+    console.log('clicked')
     event.preventDefault()
     navigate(`/articles/${this.props.article_id}/newComment`)
   }

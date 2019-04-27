@@ -7,7 +7,7 @@ const HeaderNav = ({ loggedInAs }) => {
     navigate(`/${loggedInAs}`)
   }
   return (
-    <div>
+    <div className='NavBar'>
       <img className='HeaderImage' src={'https://i.imgur.com/W9ijPko.jpg'}></img>
       <nav className='NavBar'>
         <Link className='homepageLink' to='/'>HomePage</Link> <Link className='articleLink' to='/articles'>Articles</Link>  <Link className='topicsLink' to='/topics'>Topics</Link>

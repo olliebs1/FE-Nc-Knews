@@ -12,6 +12,7 @@ export default class Articles extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
     const { topic } = this.props
     const { sortedBy } = this.state
     fetchArticles(topic, sortedBy).then(articles => {

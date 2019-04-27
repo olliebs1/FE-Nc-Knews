@@ -14,9 +14,11 @@ export default class PostCommentForm extends Component {
       <div>
         {!this.state.loading ? <form onSubmit={this.handleSubmit}>
           <label>
-            Comment: <textarea type='text' name='title' onChange={this.handleBodyChange}></textarea>
+            Comment:
             <br></br>
-            {!this.props.loggedInAs ? 'Please Log In to post Comment.' : <button >Post Comment</button>}
+            <textarea type='text' name='title' onChange={this.handleBodyChange} className='postCommentText'></textarea>
+            <br></br>
+            {!this.props.loggedInAs ? 'Please Log In to post Comment.' : <button className='postCommentButton'>Post Comment</button>}
           </label>
         </form> : <h1>LOADING....</h1>}
       </div>

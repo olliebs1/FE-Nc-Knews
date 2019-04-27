@@ -8,6 +8,11 @@ body{
   background-color: rgb(116, 116, 116);
 }
 
+.NavBar{
+  margin: 10px;
+  padding: 10px;
+}
+
 .userImage{
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -153,6 +158,36 @@ body{
 }
 
 .signUpButton:hover{
+  background: rgb(116, 116, 116);
+  box-shadow: 0 0 0 0 
+}
+
+.postArticleButton{
+  background: lightgray;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid black;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0);
+  border-radius: 20px;
+}
+
+.postArticleButton:hover{
+  background: rgb(116, 116, 116);
+  box-shadow: 0 0 0 0 
+}
+
+.postCommentButton{
+  background: lightgray;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid black;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0);
+  border-radius: 20px;
+}
+
+.postCommentButton:hover{
   background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
@@ -307,6 +342,66 @@ h3{
 
 .logInInput:hover{
   background: blue;
+  box-shadow: 0 0 0 0;
+}
+
+.postArticleInputTitle{
+  background: lightgray;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid black;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0);
+  border-radius: 20px;
+}
+
+.postArticleInputTitle:hover{
+  background: rgb(116, 116, 116);
+  box-shadow: 0 0 0 0;
+}
+
+.postArticleInputTopic{
+  background: lightgray;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid black;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0);
+  border-radius: 20px;
+}
+
+.postArticleInputTopic:hover{
+  background: rgb(116, 116, 116);
+  box-shadow: 0 0 0 0;
+}
+
+.postCommentText{
+  background: lightgray;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid black;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0);
+  border-radius: 20px;
+}
+
+.postCommentText:hover{
+  background: rgb(116, 116, 116);
+  box-shadow: 0 0 0 0;
+}
+
+.postArticleInputArticle{
+  background: lightgray;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid black;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0);
+  border-radius: 20px;
+}
+
+.postArticleInputArticle:hover{
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0;
 }
 

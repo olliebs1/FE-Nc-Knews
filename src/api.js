@@ -7,7 +7,7 @@ export const fetchAllUsers = async () => {
   return data.users
 }
 
-export const fetchArticles = async (topic, sortedBy, order) => {
+export const fetchArticles = async (topic, sortedBy) => {
   const response = await axios.get(`${BASE_URL}/articles`,
     {
       params: {
