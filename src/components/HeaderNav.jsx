@@ -8,7 +8,7 @@ const HeaderNav = ({ loggedInAs }) => {
   }
   return (
     <div>
-      <h1 className='Header'>NorthCoders Knews</h1>
+      <img className='HeaderImage' src={'https://i.imgur.com/W9ijPko.jpg'}></img>
       <nav className='NavBar'>
         <Link className='homepageLink' to='/'>HomePage</Link> <Link className='articleLink' to='/articles'>Articles</Link>  <Link className='topicsLink' to='/topics'>Topics</Link>
         {!loggedInAs && <Link className='signupLink' to={`/signup`}>Sign Up</Link>}

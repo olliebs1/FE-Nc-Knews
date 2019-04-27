@@ -5,7 +5,7 @@
 }
 
 body{
-  background-color: grey;
+  background-color: rgb(116, 116, 116);
 }
 
 .userImage{
@@ -21,8 +21,9 @@ body{
   transform: scaleX(-1);
 }
 
-.Header{
+.HeaderImage{
   padding: 20px;
+  width: 80%;
   margin: 0;
 }
 
@@ -137,7 +138,7 @@ body{
 }
 
 .readArticleButton:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
 
@@ -152,7 +153,7 @@ body{
 }
 
 .signUpButton:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
 
@@ -289,7 +290,7 @@ h3{
 }
 
 .seeArticlesButton:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
 
