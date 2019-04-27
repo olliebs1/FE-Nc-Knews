@@ -321,7 +321,7 @@ h3{
 }
 
 .usernameInput:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0;
 }
 
@@ -335,7 +335,7 @@ h3{
   border-radius: 20px;
 }
 .topicInput:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
 
@@ -349,7 +349,7 @@ h3{
   border-radius: 20px;
 }
 .signUpName:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
 
@@ -363,7 +363,7 @@ h3{
   border-radius: 20px;
 }
 .signUpUserName:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
 
@@ -377,7 +377,7 @@ h3{
   border-radius: 20px;
 }
 .signUpAvatar:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
 
@@ -399,11 +399,6 @@ h3{
   box-shadow: 0 0 0 0
 }
 
-/* .readArticleLink:hover{
-  background: slategray;
-  box-shadow: 0 0 0 0 
-} */
-
 .visitProfileLink{
   text-decoration: none;
   text-align: center;
@@ -418,7 +413,7 @@ h3{
 }
 
 .visitProfileLink:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
 
@@ -437,7 +432,7 @@ h3{
 }
 
 .homepageLink:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
 
@@ -456,7 +451,7 @@ h3{
 }
 
 .articleLink:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
 
@@ -475,7 +470,7 @@ h3{
 }
 
 .topicsLink:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
 
@@ -493,7 +488,7 @@ h3{
   border-radius: 20px;
 }
 .signupLink:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0;
 }
 
@@ -512,7 +507,7 @@ h3{
 }
 
 .readTopicLink:hover{
-  background: slategray;
+  background: rgb(116, 116, 116);
   box-shadow: 0 0 0 0 
 }
  
