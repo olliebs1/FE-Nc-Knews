@@ -39,8 +39,8 @@ export const getAllComments = async (article_id) => {
   return data.comments
 }
 
-export const deleteComment = (deletedComment_id) => {
-  return axios.delete(`${BASE_URL}/comments/${deletedComment_id}`)
+export const deleteComment = (comment_id) => {
+  return axios.delete(`${BASE_URL}/comments/${comment_id}`)
 }
 
 export const postNewComment = async (article_id, newComment) => {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { fetchArticleById } from '../api';
 import Comments from './Comments';
-import { patchArticleVote } from '../api';
 import { navigate } from '@reach/router';
 import VotesComponent from './VotesComponent';
 

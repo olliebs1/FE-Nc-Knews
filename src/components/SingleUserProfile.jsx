@@ -4,7 +4,6 @@ import { navigate } from '@reach/router'
 const SingleUserProfile = (props) => {
   const { loggedInAs } = props
   return (
-
     loggedInAs &&
     <div>
       <p>Welcome: {loggedInAs} </p>
@@ -12,7 +11,7 @@ const SingleUserProfile = (props) => {
         if (user.username === props.username) {
           return (
             <div>
-              <img src={user.avatar_url} alt='' />
+              <img src={user.avatar_url} img alt src='https://i.imgflip.com/1onp4t.jpg' />
               <h3> Name: {user.name}</h3>
               <h3>Username: {user.username}</h3>
               <button onClick={() => { handleArticleClick(props.username) }}>See Your Articles</button>

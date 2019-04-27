@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { fetchArticles, deleteArticle } from '../api';
 import { navigate, Link } from '@reach/router';
+import ArticlesCard from './ArticlesCard';
 
 export default class Articles extends Component {
 
@@ -20,8 +21,6 @@ export default class Articles extends Component {
         navigate('/error404')
     })
   }
-
-
 
   componentDidUpdate(prevProps, prevState) {
     const { topic } = this.props
@@ -56,22 +55,18 @@ export default class Articles extends Component {
     navigate('/newArticle')
   }
 
-  handleReadArticleClick = (event) => {
-    navigate('/articles/:article_id')
-  }
-
   removeSortedBy = () => {
     this.setState({ sortedBy: '' })
   }
 
-
   render() {
-    const { loggedInAs } = this.props
+    const { loggedInAs, topic } = this.props
+    const { articles } = this.state
     return (
       <div>
-        {!this.props.topic ? <h1 className='articles-title'>Articles</h1> : <h1>Articles by topic: {this.props.topic}</h1>}
+        {!topic ? <h1 className='articles-title'>Articles</h1> : <h1>Articles by topic: {topic}</h1>}
         <br></br>
-        {!this.props.topic && <label >
+        {!topic && <label >
           <select className='sortingSelector' onChange={this.SortArticle}> Sort By
             <option value='article_id'>Sort By: Article Id</option>
             <option value='created_at' >Sort By: Date</option>
@@ -82,33 +77,24 @@ export default class Articles extends Component {
           </select>
         </label>}
         <br></br>
-        <br></br>
-        {!this.props.topic && <button onClick={this.handleClick}>Create Article?</button>}
-        {this.state.articles.length > 0 ?
-          this.state.articles.map(article => {
-            return (
-              <div className='articles' key={article.article_id}>
-                <h2>Title: {article.title}</h2>
-                <h3>Topic: {article.topic}</h3>
-                <Link to={`/articles/${article.article_id}`} onClick={this.handleReadArticleClick} >Read Article</Link>
-                <br></br>
-                {loggedInAs && <button disabled={article.author !== loggedInAs} onClick={() => {
-                  deleteArticle(article.article_id).then(res => {
-                    let filteredArticles = this.state.articles.filter(
-                      ({ article_id }) => article.article_id !== article_id);
-                    this.setState({ articles: filteredArticles, loading: true })
-                    navigate('/articles')
-                  })
-                }} value='article_id'>Delete Article?</button>}
-              </div>
-            )
-          }) :
-          <>
+        {!topic && <button onClick={this.handleClick}>Create Article?</button>}
+        {articles.length > 0 ? articles.map(article => {
+          return (
+            <>
+              <ArticlesCard article={article} loggedInAs={loggedInAs} handleDeleteArticleClick={this.handleDeleteArticleClick} />
+            </>
+          )
+        }) : <>
             <h1>This topic has no articles</h1>
             <Link to={'/newArticle'}>Post Article? </Link>
-          </>
-        }
+          </>}
       </div>
     )
+  }
+
+  handleDeleteArticleClick = (deletedId) => {
+    let filteredArticles = this.state.articles.filter(
+      ({ article_id }) => article_id !== deletedId);
+    this.setState({ articles: filteredArticles, loading: true })
   }
 }

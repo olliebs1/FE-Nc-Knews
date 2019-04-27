@@ -46,7 +46,6 @@ class App extends Component {
     this.setState({ loggedInAs: '', isLoggedIn: false })
   }
 
-
   componentDidMount() {
     const recentLoggedInUser = localStorage.getItem('loggedInAs')
 
