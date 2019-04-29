@@ -48,7 +48,6 @@ class App extends Component {
 
   componentDidMount() {
     const recentLoggedInUser = localStorage.getItem('loggedInAs')
-
     fetchAllUsers().then((users => {
       this.setState({ users: users, loggedInAs: recentLoggedInUser })
     }))
