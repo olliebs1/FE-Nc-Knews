@@ -13,7 +13,6 @@ export default class SingleUserArticles extends Component {
     })
   }
 
-
   render() {
     return (
       <div >
@@ -39,5 +38,4 @@ export default class SingleUserArticles extends Component {
   handleUsersArticlesClick = (article_id) => {
     navigate(`/articles/${article_id}`)
   }
-
 }

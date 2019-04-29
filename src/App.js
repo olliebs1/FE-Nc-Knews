@@ -3,7 +3,7 @@ import './App.css';
 import HeaderNav from './components/HeaderNav';
 import { fetchAllUsers } from './api';
 import Articles from './components/Articles';
-import { Router, navigate } from '@reach/router'
+import { Router } from '@reach/router'
 import PostArticleForm from './components/PostArticleForm';
 import SingleArticle from './components/SingleArticle';
 import SingleUserProfile from './components/SingleUserProfile';
@@ -24,11 +24,12 @@ class App extends Component {
 
 
   handleSubmit = (event) => {
+    const { users, loggedInAs } = this.state
     event.preventDefault()
-    this.state.users.map(user => {
+    users.map(user => {
       if (user.username === event.target[0].value) {
         this.setState({ loggedInAs: event.target[0].value, loggedIn: true }, () => {
-          localStorage.setItem('loggedInAs', this.state.loggedInAs)
+          localStorage.setItem('loggedInAs', loggedInAs)
         })
       } else if (user.username !== event.target[0].value) {
         this.setState({ validUser: false })
@@ -38,7 +39,6 @@ class App extends Component {
 
   handleLogoutClick = () => {
     this.removeUser()
-    navigate('/')
     localStorage.removeItem('loggedInAs')
   }
 
@@ -55,29 +55,25 @@ class App extends Component {
   }
 
   render() {
+    const { loggedInAs, loggedIn, users } = this.state
     return (
       <div className="App">
-        <HeaderNav path={'/*'} loggedInAs={this.state.loggedInAs} loggedIn={this.state.loggedIn} handleLogoutClick={this.handleLogoutClick} default />
+        <HeaderNav path={'/*'} loggedInAs={loggedInAs} loggedIn={loggedIn} handleLogoutClick={this.handleLogoutClick} default />
 
-        <form onSubmit={this.handleSubmit} users={this.state.users} className='login-form'>
-          {!this.state.loggedInAs ? <><h3 className='pleaseLogInMessage' >Please Log In</h3> <input className='usernameInput' type="text" name="username" /></> : <h2 className='loggedInAsText'>Logged In As: {this.state.loggedInAs}</h2>}
-          {this.state.loggedInAs ? <button className='logOutButton' onClick={this.handleLogoutClick} >Log Out</button> : <input className='logInInput' type="submit" value="Log In" />}
+        <form onSubmit={this.handleSubmit} users={users} className='login-form'>
+          {!loggedInAs ? <><h3 className='pleaseLogInMessage' >Please Log In</h3> <input className='usernameInput' type="text" name="username" /></> : <h2 className='loggedInAsText'>Logged In As: {loggedInAs}</h2>}
+          {loggedInAs ? <button className='logOutButton' onClick={this.handleLogoutClick} >Log Out</button> : <input className='logInInput' type="submit" value="Log In" />}
         </form>
-        {/* {!this.state.validUser && <>
-          <p>Invalid Username</p>
-        </>} */}
-
-
         <Router>
-          <Articles key='articlePath' path={'/articles'} loggedInAs={this.state.loggedInAs} />
-          <Articles key='articleByTopicPath' path={'/topics/:topic'} loggedInAs={this.state.loggedInAs} />
-          <PostArticleForm path={'/newArticle'} loggedInAs={this.state.loggedInAs} />
-          <SingleArticle path={`/articles/:article_id`} users={this.state.users} username={this.state.loggedInAs} />
-          <SingleUserProfile path={`/:username`} users={this.state.users} removeUser={this.removeUser} loggedInAs={this.state.loggedInAs} />
-          <SingleUserArticles path={'/:username/articles'} username={this.state.loggedInAs} />
-          <PostCommentForm path={'/articles/:article_id/newComment'} loggedInAs={this.state.loggedInAs} />
-          <Topics path={'/topics'} loggedInAs={this.state.loggedInAs} />
-          <SignUp path={'/signup'} loggedInAs={this.state.loggedInAs} />
+          <Articles key='articlePath' path={'/articles'} loggedInAs={loggedInAs} />
+          <Articles key='articleByTopicPath' path={'/topics/:topic'} loggedInAs={loggedInAs} />
+          <PostArticleForm path={'/newArticle'} loggedInAs={loggedInAs} />
+          <SingleArticle path={`/articles/:article_id`} users={users} username={loggedInAs} />
+          <SingleUserProfile path={`/:username`} users={users} removeUser={this.removeUser} loggedInAs={loggedInAs} />
+          <SingleUserArticles path={'/:username/articles'} username={loggedInAs} />
+          <PostCommentForm path={'/articles/:article_id/newComment'} loggedInAs={loggedInAs} />
+          <Topics path={'/topics'} loggedInAs={loggedInAs} />
+          <SignUp path={'/signup'} loggedInAs={loggedInAs} />
           <Error path={'/error'} />
         </Router>
       </div>

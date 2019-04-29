@@ -10,13 +10,13 @@ export default class VotesComponent extends Component {
   }
 
   render() {
-    const { votes } = this.props
+    const { votes, username } = this.props
     const { voteChange } = this.state
     return (
       <div>
-        <button className='voteUpButton' onClick={() => { this.handleVoteClick(1) }} disabled={!this.props.username || this.state.voteChange > 0}>Vote Up!</button>
-        <span>{votes + voteChange}</span>
-        <button className='voteDownButton' onClick={() => { this.handleVoteClick(-1) }} disabled={!this.props.username || this.state.voteChange < 0}>Vote Down!</button>
+        <button className='voteUpButton' onClick={() => { this.handleVoteClick(1) }} disabled={!username || voteChange > 0}>Vote Up!</button>
+        <span>Total Votes: {votes + voteChange}</span>
+        <button className='voteDownButton' onClick={() => { this.handleVoteClick(-1) }} disabled={!username || voteChange < 0}>Vote Down!</button>
       </div>
     )
   }

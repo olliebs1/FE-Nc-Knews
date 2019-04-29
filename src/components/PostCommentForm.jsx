@@ -10,15 +10,17 @@ export default class PostCommentForm extends Component {
   }
 
   render() {
+    const { loading } = this.state
+    const { loggedInAs } = this.props
     return (
       <div>
-        {!this.state.loading ? <form onSubmit={this.handleSubmit}>
+        {!loading ? <form onSubmit={this.handleSubmit}>
           <label>
             Comment:
             <br></br>
             <textarea type='text' name='title' onChange={this.handleBodyChange} className='postCommentText'></textarea>
             <br></br>
-            {!this.props.loggedInAs ? 'Please Log In to post Comment.' : <button className='postCommentButton'>Post Comment</button>}
+            {!loggedInAs ? 'Please Log In to post Comment.' : <button className='postCommentButton'>Post Comment</button>}
           </label>
         </form> : <h1>LOADING....</h1>}
       </div>
@@ -33,9 +35,9 @@ export default class PostCommentForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const { article_id } = this.props
+    const { article_id, loggedInAs } = this.props
     const newComment = this.state
-    newComment.author = this.props.loggedInAs
+    newComment.author = loggedInAs
     this.setState({ loading: true })
     postNewComment(article_id, newComment).then(() => {
       navigate(`/articles/${article_id}`)

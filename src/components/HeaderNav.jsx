@@ -6,6 +6,7 @@ const HeaderNav = ({ loggedInAs }) => {
   const handleProfileClick = () => {
     navigate(`/${loggedInAs}`)
   }
+
   return (
     <div className='NavBar'>
       <img className='HeaderImage' src={'https://i.imgur.com/W9ijPko.jpg'} alt=''></img>

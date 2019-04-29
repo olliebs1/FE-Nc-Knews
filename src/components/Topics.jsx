@@ -19,8 +19,9 @@ export default class Topics extends Component {
     })
   }
 
-  componentDidUpdate(prevState, prevProps) {
-    if (prevState.topic !== this.state.topic) {
+  componentDidUpdate(prevState, _) {
+    const { topic } = this.state
+    if (prevState.topic !== topic) {
       getTopics().then(topic => {
         this.setState({ topics: topic, loading: false })
       })
@@ -28,16 +29,16 @@ export default class Topics extends Component {
   }
 
   render() {
-    const { topics } = this.state
+    const { topics, loading, newTopic } = this.state
     const { loggedInAs } = this.props
     return (
       <div className='Topics'>
         <h1 className='topics-title' >Topics</h1>
         <br></br>
-        {!this.state.loading ?
+        {!loading ?
           <>
             {loggedInAs && <button className='createButton' onClick={this.handleClick}>Create Topic</button>}
-            {this.state.newTopic && <form onSubmit={this.handleSubmit}>
+            {newTopic && <form onSubmit={this.handleSubmit}>
               Topic: <input className='topicInput' onChange={this.handleTopicChange} type='text' ></input>
               <br></br>
               Description: <input className='topicInput' onChange={this.handleDescriptionChange}></input>
@@ -75,9 +76,10 @@ export default class Topics extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    const { slug, topic } = this.state;
     const newPostTopic = {
-      slug: this.state.slug,
-      description: this.state.topic,
+      slug: slug,
+      description: topic,
     }
     this.setState({ loading: true })
     postTopic(newPostTopic).then(() => {

@@ -16,10 +16,10 @@ export default class SingleArticle extends Component {
   }
 
   componentDidMount() {
-    fetchArticleById(this.props.article_id).then(article => {
+    const { article_id } = this.props
+    fetchArticleById(article_id).then(article => {
       this.setState({ article: article })
     }).catch(err => {
-      console.log(err)
       if (err) {
         navigate('/error', {
           replace: true,
@@ -28,16 +28,17 @@ export default class SingleArticle extends Component {
             code: err.code,
             message: err.message,
           }
-        },
-          console.log(err)
+        }
         )
       }
     })
   }
 
   componentDidUpdate(_, prevState) {
-    if (prevState.voteChange !== this.state.voteChange) {
-      fetchArticleById(this.props.article_id).then(article => {
+    const { voteChange } = this.state
+    const { article_id } = this.props
+    if (prevState.voteChange !== voteChange) {
+      fetchArticleById(article_id).then(article => {
         this.setState({ article: article })
       })
     }
@@ -48,13 +49,13 @@ export default class SingleArticle extends Component {
     const { username, article_id } = this.props
     return (
       <div className='SingleArticle'>
-        {!this.state.article && <h1>LOADING....</h1>}
+        {!article && <h1>LOADING....</h1>}
         {article && <h1>Title: {article.title}</h1>}
         {article && <h3>Article: {article.body}</h3>}
         {article && <VotesComponent votes={article.votes} username={username} article_id={article_id} />}
         <br></br>
         <br></br>
-        {article && <Comments article_id={article.article_id} username={this.props.username} />}
+        {article && <Comments article_id={article.article_id} username={username} />}
       </div>
     )
   }

@@ -108,6 +108,7 @@ body{
 .articles:hover{
   background: rgb(40, 43, 46);
   box-shadow: 0 0 0 0;
+  color: white;
 }
 
 .userDetails {
@@ -130,6 +131,7 @@ body{
 .singleUserArticles:hover{
   background: rgb(40, 43, 46);
   box-shadow: 0 0 0 0;
+  color: white;
 }
 
 .readArticleButton{
@@ -210,6 +212,7 @@ h3{
 .IndividualTopic:hover{
   background: rgb(40, 43, 46);
   box-shadow: 0 0 0 0;
+  color: white;
 }
 
 .Singlecomment{
@@ -223,6 +226,7 @@ h3{
 .Singlecomment:hover{
   background: rgb(40, 43, 46);
   box-shadow: 0 0 0 0;
+  color: white;
 }
 
 .deleteButton {
@@ -607,9 +611,20 @@ h3{
   box-shadow: 0 0 0 0 
 }
  
-/* /////////////// */
-
 .custom-select {
+ text-decoration: none;
+  width: 20%;
+  color: black;
+  background: lightgray;
+  font-size: 1em;
+  margin: 20px;
+  padding: 0.25em 1em;
+  border: 2px solid black;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0);
+  border-radius: 20px;  
+}
+
+.topicSortByMenu{
  text-decoration: none;
   width: 20%;
   color: black;

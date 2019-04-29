@@ -12,7 +12,6 @@ export default class Articles extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
     const { topic } = this.props
     const { sortedBy } = this.state
     fetchArticles(topic, sortedBy).then(articles => {
@@ -26,7 +25,7 @@ export default class Articles extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { topic } = this.props
     const { sortedBy } = this.state
-    if (prevProps.topic !== this.props.topic) {
+    if (prevProps.topic !== topic) {
       fetchArticles(topic, sortedBy).then(articles => {
         this.setState({ articles })
       }).catch(err => {
@@ -34,7 +33,7 @@ export default class Articles extends Component {
           navigate('/error404')
       })
     }
-    else if (prevState.sortedBy !== this.state.sortedBy) {
+    else if (prevState.sortedBy !== sortedBy) {
       fetchArticles(topic, sortedBy).then(articles => {
         this.setState({ articles })
       }).catch(err => {
@@ -45,14 +44,15 @@ export default class Articles extends Component {
 
   SortArticle = (event) => {
     event.preventDefault()
-    if (event.target.value !== this.state.sortedBy) {
+    const { sortedBy } = this.state
+    if (event.target.value !== sortedBy) {
       this.setState({ sortedBy: event.target.value })
       navigate(`/articles`)
 
     }
   }
 
-  handleClick = (event) => {
+  handleClick = () => {
     navigate('/newArticle')
   }
 
@@ -94,7 +94,8 @@ export default class Articles extends Component {
   }
 
   handleDeleteArticleClick = (deletedId) => {
-    let filteredArticles = this.state.articles.filter(
+    const { articles } = this.state
+    let filteredArticles = articles.filter(
       ({ article_id }) => article_id !== deletedId);
     this.setState({ articles: filteredArticles, loading: true })
   }

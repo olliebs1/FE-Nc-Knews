@@ -1,7 +1,6 @@
 import React from 'react'
 
-const Error = (props) => {
-  console.log(props)
+const Error = () => {
   return (
     <div>
       <h1>Error!</h1>

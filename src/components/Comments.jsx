@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { getAllComments } from '../api';
 import { navigate } from '@reach/router';
-import VotesComponent from './VotesComponent';
 import CommentCard from './CommentCard';
 
 export default class Comments extends Component {
@@ -21,9 +20,9 @@ export default class Comments extends Component {
   }
 
   handleClick = (event) => {
-    console.log('clicked')
     event.preventDefault()
-    navigate(`/articles/${this.props.article_id}/newComment`)
+    const { article_id } = this.props
+    navigate(`/articles/${article_id}/newComment`)
   }
 
   render() {
@@ -32,13 +31,12 @@ export default class Comments extends Component {
     return (
       <div className='comments'>
         <h1 className='comments-title'>Comments:</h1>
-        <button className='createButton' onClick={this.handleClick} disabled={!username}>Post Comment?</button>
-        {comments && this.state.comments.map(comment => {
+        <button className='createButton' onClick={this.handleClick} >Post Comment?</button>
+        {comments && comments.map(comment => {
           return (
             <div className='allComments'>
               <>
-                <CommentCard comment={comment} username={this.props.username} handleDeleteCommentClick={this.handleDeleteCommentClick} />
-                <VotesComponent votes={comment.votes} username={this.props.username} comment_id={comment.comment_id} />
+                <CommentCard comment={comment} username={username} handleDeleteCommentClick={this.handleDeleteCommentClick} />
               </>
             </div>
           )
@@ -48,7 +46,8 @@ export default class Comments extends Component {
     )
   }
   handleDeleteCommentClick = (deletedId) => {
-    let filteredcomments = this.state.comments.filter(
+    const { comments } = this.state
+    let filteredcomments = comments.filter(
       ({ comment_id }) => comment_id !== deletedId
     );
     this.setState({ comments: filteredcomments });

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import Button from 'react-bootstrap/Button';
 import { Link, navigate } from '@reach/router';
 import { deleteArticle } from '../api';
 

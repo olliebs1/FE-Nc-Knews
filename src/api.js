@@ -62,11 +62,9 @@ export const patchVote = async (comment_id, article_id, newVote) => {
   const patchedVote = { inc_votes: newVote }
   if (article_id) {
     const { data } = await axios.patch(`${BASE_URL}/articles/${article_id}`, patchedVote)
-    console.log(data, 'articles')
     return data
   } else if (comment_id) {
     const { data } = await axios.patch(`${BASE_URL}/comments/${comment_id}`, patchedVote)
-    console.log(data, 'comments')
     return data
   }
 }

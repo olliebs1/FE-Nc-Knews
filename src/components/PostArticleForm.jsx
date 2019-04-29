@@ -12,27 +12,38 @@ export default class PostArticleForm extends Component {
   }
 
   render() {
+    const { loading } = this.state
+    const { loggedInAs } = this.props
     return (
       <div>
-        {!this.state.loading ? <form onSubmit={this.handleSubmit}>
-          <label>
-            Title: <input className='postArticleInputTitle' type='text' name='title' onChange={this.handleTitleChange}></input>
-            <br></br>
-            Article: <input className='postArticleInputArticle' type='text' name='article' onChange={this.handleArticleChange}></input>
-            <br></br>
-            Topic: <input className='postArticleInputTopic' type='text' name='topic' onChange={this.handleTopicChange}></input>
-            <br></br>
-            {!this.props.loggedInAs ? 'Please Log In to post Article.' : <button className='postArticleButton' >Post Article</button>}
-          </label>
+        {!loading ? <form onSubmit={this.handleSubmit}>
+          Title: <input className='postArticleInputTitle' type='text' name='title' onChange={this.handleTitleChange}></input>
+          <br></br>
+          Article: <input className='postArticleInputArticle' type='text' name='article' onChange={this.handleArticleChange}></input>
+          <br></br>
+          <>
+            Topic: <select onChange={this.handleSortTopic} className='topicSortByMenu'>
+              <option value='football' >football</option>
+              <option value='cooking'>cooking</option>
+              <option value='coding'>coding</option>
+            </select>
+          </>
+          <br></br>
+          {!loggedInAs ? 'Please Log In to post Article.' : <button className='postArticleButton' >Post Article</button>}
         </form> : <h1 className='loadingMessage' >LOADING....</h1>}
       </div>
     )
   }
 
+  handleSortTopic = (event) => {
+    this.setState({ topic: event.target.value })
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
+    const { loggedInAs } = this.props
     const newArticle = this.state
-    newArticle.username = this.props.loggedInAs
+    newArticle.username = loggedInAs
     this.setState({ loading: true })
     postNewArticle(newArticle).then(() => {
       navigate('/articles')
