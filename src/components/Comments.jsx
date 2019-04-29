@@ -48,12 +48,10 @@ export default class Comments extends Component {
     )
   }
   handleDeleteCommentClick = (deletedId) => {
-    // deleteComment(deletedId).then(res => {
     let filteredcomments = this.state.comments.filter(
       ({ comment_id }) => comment_id !== deletedId
     );
     this.setState({ comments: filteredcomments });
-    // })
   }
 }
 

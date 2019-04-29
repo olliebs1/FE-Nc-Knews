@@ -201,9 +201,10 @@ h3{
   margin: 0 auto;
   margin-bottom: 10px;
   box-shadow: 0 0 20px 0 rgb(0, 0, 0);
-  margin-bottom: 25px;
+  padding-bottom: 25px;
   max-height: 85vh;
   min-height: 10vh;
+
 }
 
 .IndividualTopic:hover{

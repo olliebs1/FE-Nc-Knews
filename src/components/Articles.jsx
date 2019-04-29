@@ -68,7 +68,7 @@ export default class Articles extends Component {
         {!topic ? <h1 className='articles-title'>Articles</h1> : <h1>Articles by topic: {topic}</h1>}
         <br></br>
         {!topic && <div >
-          <select class="custom-select" onChange={this.SortArticle}> Sort By
+          <select className="custom-select" onChange={this.SortArticle}> Sort By
             <option value='article_id'>Sort By: Article Id</option>
             <option value='created_at' >Sort By: Date</option>
             <option value='votes'>Sort By: Num of Votes</option>
@@ -82,7 +82,7 @@ export default class Articles extends Component {
         {articles.length > 0 ? articles.map(article => {
           return (
             <>
-              <ArticlesCard article={article} loggedInAs={loggedInAs} handleDeleteArticleClick={this.handleDeleteArticleClick} />
+              <ArticlesCard article={article} loggedInAs={loggedInAs} handleDeleteArticleClick={this.handleDeleteArticleClick} key={article.article_id} />
             </>
           )
         }) : <>

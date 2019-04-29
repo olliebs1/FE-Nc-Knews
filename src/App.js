@@ -69,8 +69,8 @@ class App extends Component {
 
 
         <Router>
-          <Articles path={'/articles'} loggedInAs={this.state.loggedInAs} />
-          <Articles path={'/topics/:topic'} loggedInAs={this.state.loggedInAs} />
+          <Articles key='articlePath' path={'/articles'} loggedInAs={this.state.loggedInAs} />
+          <Articles key='articleByTopicPath' path={'/topics/:topic'} loggedInAs={this.state.loggedInAs} />
           <PostArticleForm path={'/newArticle'} loggedInAs={this.state.loggedInAs} />
           <SingleArticle path={`/articles/:article_id`} users={this.state.users} username={this.state.loggedInAs} />
           <SingleUserProfile path={`/:username`} users={this.state.users} removeUser={this.removeUser} loggedInAs={this.state.loggedInAs} />

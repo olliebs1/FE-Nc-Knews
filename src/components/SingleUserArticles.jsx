@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { fetchArticles } from '../api';
-import { Link, navigate } from '@reach/router';
+import { navigate } from '@reach/router';
 
 export default class SingleUserArticles extends Component {
   state = {
