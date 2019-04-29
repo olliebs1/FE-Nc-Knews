@@ -75,6 +75,12 @@ class App extends Component {
           <SignUp path={'/signup'} loggedInAs={loggedInAs} />
           <Error path={'/error'} />
         </Router>
+        {!loggedInAs && <ul className='userLoginList'>Please Log in with a name from the following list:
+          <li key='1'>tickle122</li>
+          <li key='2'>grumpy19</li>
+          <li key='3'>happyamy2016</li>
+          <li key='4'>cooljmessy</li>
+        </ul>}
       </div>
     );
   }
