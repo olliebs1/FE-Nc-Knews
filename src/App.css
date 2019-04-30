@@ -8,11 +8,6 @@ body{
   background-color: rgb(116, 116, 116);
 }
 
-.NavBar{
-  margin: 10px;
-  padding: 10px;
-}
-
 .userImage{
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -162,9 +157,8 @@ body{
 .signUpButton{
   background: lightgray;
   font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid black;
+  margin: auto;
+  border: 1px solid black;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0);
   border-radius: 20px;
 }
@@ -332,7 +326,7 @@ h3{
 .seeArticlesButton {
   background: lightgray;
   font-size: 1em;
-  margin: 1em;
+  margin: auto;
   padding: 0.25em 1em;
   border: 2px solid black;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0);
@@ -528,15 +522,13 @@ h3{
 }
 
 .homepageLink{
-  padding: 10px;
-  margin: 20px;
   text-decoration: none;
   color: black;
   background: lightgray;
   font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid black;
+  margin: auto;
+  padding: 0.15em 0.25em;
+  border: 1px solid black;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0);
   border-radius: 20px;
 }
@@ -547,15 +539,13 @@ h3{
 }
 
 .articleLink{
-  padding: 10px;
-  margin: 10px;
   text-decoration: none;
   color: black;
   background: lightgray;
   font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid black;
+  margin: auto;
+  padding: 0.15em 0.25em;
+  border: 1px solid black;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0);
   border-radius: 20px;
 }
@@ -566,15 +556,13 @@ h3{
 }
 
 .topicsLink{
-  padding: 10px;
-  margin: 10px;
   text-decoration: none;
   color: black;
   background: lightgray;
   font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid black;
+  margin: auto;
+  padding: 0.15em 0.25em;
+  border: 1px solid black;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0);
   border-radius: 20px;
 }
@@ -585,15 +573,13 @@ h3{
 }
 
 .signupLink{
-  padding: 10px;
-  margin: 10px;
-  text-decoration: none;
+ text-decoration: none;
   color: black;
   background: lightgray;
   font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid black;
+  margin: auto;
+  padding: 0.15em 0.25em;
+  border: 1px solid black;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0);
   border-radius: 20px;
 }

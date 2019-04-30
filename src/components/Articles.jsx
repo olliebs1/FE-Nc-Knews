@@ -68,13 +68,13 @@ export default class Articles extends Component {
         {!topic ? <h1 className='articles-title'>Articles</h1> : <h1>Articles by topic: {topic}</h1>}
         <br></br>
         {!topic && <div >
-          <select className="custom-select" onChange={this.SortArticle}> Sort By
-            <option value='article_id'>Sort By: Article Id</option>
-            <option value='created_at' >Sort By: Date</option>
-            <option value='votes'>Sort By: Num of Votes</option>
-            <option value='author'>Sort By: Author</option>
-            <option value='topic'>Sort By: Topic</option>
-            <option value='title'>Sort By: Title</option>
+          Sort By:<select className="custom-select" onChange={this.SortArticle}> Sort By
+            <option value='article_id'>Article Id</option>
+            <option value='created_at' >Date</option>
+            <option value='votes'>Num of Votes</option>
+            <option value='author'>Author</option>
+            <option value='topic'>Topic</option>
+            <option value='title'>Title</option>
           </select>
         </div>}
         <br></br>

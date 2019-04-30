@@ -80,6 +80,9 @@ class App extends Component {
           <li key='2'>grumpy19</li>
           <li key='3'>happyamy2016</li>
           <li key='4'>cooljmessy</li>
+          <li key='5'>weegembump</li>
+          <li key='6'>jessjelly</li>
+          * Case sensitive *
         </ul>}
       </div>
     );
