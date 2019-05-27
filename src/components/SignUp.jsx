@@ -26,6 +26,8 @@ export default class SignUp extends Component {
     )
   }
 
+
+
   handleNameChange = (event) => {
     event.preventDefault()
     this.setState({ name: event.target.value })
