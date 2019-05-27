@@ -69,7 +69,6 @@ export default class Articles extends Component {
         <br></br>
         {!topic && <div >
           Sort By:<select className="custom-select" onChange={this.SortArticle}> Sort By
-            <option value='article_id'>Article Id</option>
             <option value='created_at' >Date</option>
             <option value='votes'>Num of Votes</option>
             <option value='author'>Author</option>

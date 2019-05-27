@@ -54,13 +54,14 @@ class App extends Component {
   }
 
   render() {
-    const { loggedInAs, loggedIn, users } = this.state
+    const { loggedInAs, loggedIn, users, validUser } = this.state
     return (
       <div className="App">
         <HeaderNav path={'/*'} loggedInAs={loggedInAs} loggedIn={loggedIn} handleLogoutClick={this.handleLogoutClick} default />
 
         <form onSubmit={this.handleSubmit} users={users} className='login-form'>
           {!loggedInAs ? <><h3 className='pleaseLogInMessage' >Please Log In</h3> <input className='usernameInput' type="text" name="username" /></> : <h2 className='loggedInAsText'>Logged In As: {loggedInAs}</h2>}
+
           {loggedInAs ? <button className='logOutButton' onClick={this.handleLogoutClick} >Log Out</button> : <input className='logInInput' type="submit" value="Log In" />}
         </form>
         <Router>
@@ -76,13 +77,14 @@ class App extends Component {
           <Error path={'/error'} />
         </Router>
         {!loggedInAs && <ul className='userLoginList'>Please Log in with a name from the following list:
+        <br></br>
+
           <li key='1'>tickle122</li>
           <li key='2'>grumpy19</li>
           <li key='3'>happyamy2016</li>
           <li key='4'>cooljmessy</li>
           <li key='5'>weegembump</li>
           <li key='6'>jessjelly</li>
-          * Case sensitive *
         </ul>}
       </div>
     );
