@@ -12,7 +12,7 @@ export default class PostArticleForm extends Component {
   }
 
   render() {
-    const { loading } = this.state
+    const { loading, title, article } = this.state
     const { loggedInAs } = this.props
     return (
       <div>
@@ -29,7 +29,7 @@ export default class PostArticleForm extends Component {
             </select>
           </>
           <br></br>
-          {!loggedInAs ? 'Please Log In to post Article.' :
+          {!loggedInAs ? <h5>Please Log In to post Article.</h5> :
             <>
               < button className='postArticleButton' >Post Article</button>
             </>
@@ -70,7 +70,9 @@ export default class PostArticleForm extends Component {
 
   handleTopicChange = (event) => {
     event.preventDefault()
-    this.setState({ topic: event.target.value })
+    this.setState({ topic: event.target.value }, () => {
+      console.log(this.state)
+    })
   }
 }
 

@@ -10,7 +10,7 @@ export default class PostCommentForm extends Component {
   }
 
   render() {
-    const { loading } = this.state
+    const { loading, body } = this.state
     const { loggedInAs } = this.props
     return (
       <div>
@@ -20,7 +20,7 @@ export default class PostCommentForm extends Component {
             <br></br>
             <textarea type='text' name='title' onChange={this.handleBodyChange} className='postCommentText'></textarea>
             <br></br>
-            {!loggedInAs ? 'Please Log In to post Comment.' : <button className='postCommentButton'>Post Comment</button>}
+            {!loggedInAs ? 'Please Log In to post Comment.' : <button disabled={!body} className='postCommentButton'>Post Comment</button>}
           </label>
         </form> : <h1>LOADING....</h1>}
       </div>
