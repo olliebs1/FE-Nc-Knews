@@ -22,8 +22,8 @@ export const fetchArticles = async (topic, sortedBy) => {
 
 export const postNewArticle = async (newArticle) => {
   await axios.post(`${BASE_URL}/articles`, newArticle);
-  return newArticle;
-}
+  return newArticle
+};
 
 export const fetchArticleById = async (article_id) => {
   const { data } = await axios.get(`${BASE_URL}/articles/${article_id}`)

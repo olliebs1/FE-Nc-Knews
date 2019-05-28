@@ -8,7 +8,7 @@ export default class PostArticleForm extends Component {
     title: null,
     body: null,
     topic: null,
-    loading: false
+    loading: false,
   }
 
   render() {
@@ -29,8 +29,15 @@ export default class PostArticleForm extends Component {
             </select>
           </>
           <br></br>
-          {!loggedInAs ? 'Please Log In to post Article.' : <button className='postArticleButton' >Post Article</button>}
-        </form> : <h1 className='loadingMessage' >LOADING....</h1>}
+          {!loggedInAs ? 'Please Log In to post Article.' :
+            <>
+              < button className='postArticleButton' >Post Article</button>
+            </>
+          }
+        </form> :
+
+          <h1 className='loadingMessage' >LOADING....</h1>
+        }
       </div>
     )
   }
@@ -52,7 +59,8 @@ export default class PostArticleForm extends Component {
 
   handleTitleChange = (event) => {
     event.preventDefault()
-    this.setState({ title: event.target.value })
+    this.setState({ title: event.target.value }
+    )
   }
 
   handleArticleChange = (event) => {

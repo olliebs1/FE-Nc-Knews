@@ -12,6 +12,7 @@ import PostCommentForm from './components/PostCommentForm';
 import Topics from './components/Topics';
 import SignUp from './components/SignUp';
 import Error from './components/Error';
+import InvalidInputError from './components/InvalidArticleInputError';
 
 
 class App extends Component {
@@ -75,6 +76,7 @@ class App extends Component {
           <Topics path={'/topics'} loggedInAs={loggedInAs} />
           <SignUp path={'/signup'} loggedInAs={loggedInAs} />
           <Error path={'/error'} />
+          <InvalidInputError path={'/InvalidInputError'} />
         </Router>
         {!loggedInAs && <ul className='userLoginList'>Please Log in with a name from the following list:
         <br></br>
