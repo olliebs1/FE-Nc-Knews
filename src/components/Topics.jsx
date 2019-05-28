@@ -29,7 +29,7 @@ export default class Topics extends Component {
   }
 
   render() {
-    const { topics, loading, newTopic } = this.state
+    const { topics, loading, newTopic, topic, slug } = this.state
     const { loggedInAs } = this.props
     return (
       <div className='Topics'>
@@ -43,7 +43,7 @@ export default class Topics extends Component {
               <br></br>
               Description: <input className='topicInput' onChange={this.handleDescriptionChange}></input>
               <br></br>
-              <button className='submitButton'>Submit</button>
+              {topic && slug ? <button className='submitButton'>Submit</button> : 'Please fill in all fields'}
             </form>}
           </>
           : <h1>LOADING....</h1>}
