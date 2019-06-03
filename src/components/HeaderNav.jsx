@@ -9,7 +9,7 @@ const HeaderNav = ({ loggedInAs }) => {
 
   return (
     <div className='NavBar'>
-      <img className='HeaderImage' src={'https://i.imgur.com/W9ijPko.jpg'} alt=''></img>
+      <img className='HeaderImage' src={'https://i.imgur.com/qrHqZlN.jpg'} alt=''></img>
       <nav className='NavBar'>
         <Link className='homepageLink' to='/'>HomePage</Link> <Link className='articleLink' to='/articles'>Articles</Link>  <Link className='topicsLink' to='/topics'>Topics</Link>
         {!loggedInAs && <Link className='signupLink' to={`/signup`}>Sign Up</Link>}
